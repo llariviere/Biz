@@ -785,6 +785,81 @@ function add_card_li(ii,v,n,i) {
 	}
 }
 
+function add_card_li_match(ii,v) {
+	console.log('add_card_li_match('+ii+', '+v+')');
+	
+	if (typeof v === "undefined") return false;
+	if (v.toString().replace(/^[^\d\w]$/,'')=='') return false;
+	
+	if (B.options.ocr_match) {
+		
+		var Name = /^[a-zéè\-]{2,}\s[a-zéè\-]{2,}$/i;
+		var Company = /\s(lt[eéè]e)|\s(inc)|\s(enr)/i;
+		var Email = /\w+@\w+/;
+		var Website = /(www.)|(.com)|(.ca)/i;
+		var Fax = /(fax)|(telec)|(téléc)/i;
+		var Cel = /(cel)/i;
+		var Tel = /(.+\d{3}.{1,2}\d{3}.?\d{4})/i;
+		var Add = /^(\d{1,2}[,\d]\d+[\s,].+)/i;
+		var li = '';
+		
+		var i = '', cls = '';
+		if (v.match(Company)) {
+			if (!$$(B.container).find("input[name='29']").val()) {
+				$$(B.container+" input[name='29']").val(v);
+				cls = 'off';
+			}
+		}
+		else if (v.match(Name)) {
+			if (!$$(B.container).find("input[name='35']").val()) {
+				var names = v.split(' ');
+				$$(B.container+" input[name='35']").val(names[0]);
+				$$(B.container+" input[name='38']").val(names[1]);
+				cls = 'off';
+			}
+		}
+		else if (v.match(Email)) {
+			if (!$$(B.container).find("input[name='33']").val()) {
+				$$(B.container+" input[name='33']").val(v);
+				cls = 'off';
+			}
+		}
+		else if (v.match(Cel)) {
+			if (!$$(B.container).find("input[name='26']").val()) {
+				var telno = v;//.replace(/[^\d]/g,'');
+				$$(B.container+" input[name='26']").val(telno);
+				cls = 'off';
+			}
+		}
+		else if (v.match(Website)) {
+			if ($$(B.container).find("input[name='41']").length==0) i = 41;
+			cls = 'off';
+		}
+		else if (v.match(Fax)) {
+			if ($$(B.container).find("input[name='34']").length==0) i = 34;
+			cls = 'off';
+		}
+		else if (v.match(Tel)) {
+			if ($$(B.container).find("input[name='24']").length==0) i = 24;
+			cls = 'off';
+		}
+		else if (v.match(Add)) {
+			if ($$(B.container).find("input[name='22']").length==0) i = 22;
+			cls = 'off';
+		}
+		
+	}
+	
+	v = v.replace(/(\()/g,' (').replace(/(\s\s)/g,' ');
+	var ocr_words = v.trim().split(' ');
+	for (var i=0; i<ocr_words.length; i++) {
+		cls = '';
+		ocr_words[i] = '<span class="word '+cls+'">'+ocr_words[i].trim()+'</span>';
+	}
+	$$("#card_ocr_words").append(ocr_words.join(''));
+	
+}
+
 function add_card_word_detect() {
 	console.log('add_card_word_detect()');
 	
@@ -1557,4 +1632,3 @@ $$(".card_template").on("click", function() {
 	$$("#template_text").text($$(this).data("name"));
 	$$("#template").val($$(this).attr("id"));
 });
-
