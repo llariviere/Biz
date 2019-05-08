@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.virtualbizcards.bizcard" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Bizcard</name>
+<widget id="com.virtualbizcards.biz" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Biz</name>
     <description>
-       Bizswiper without scan.
+       Biz virtual card app.
     </description>
     <author email="bizswiper@gmail.com" href="https://virtualbizcards.com">
-        Bizswiper Team
+        Biz Team
     </author>
     <content src="index.html" />
     <access origin="https://vision.googleapis.com" />
