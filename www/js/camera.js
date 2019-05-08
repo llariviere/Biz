@@ -21,8 +21,9 @@ function camera_options(srcType) {
 
 function camera_open(selection) {
 	console.log('camera_open()');
+	
 	if (typeof Camera === "undefined") {
-		card_ocr_process({vertices:[{x:0,y:0},{x:0,y:0},{x:0,y:0},{x:0,y:0}],description:''});$$("#card-entry img."+B.card_side).attr("src","img/paper.jpg");return false;
+		card_ocr_process({vertices:[{x:0,y:0},{x:0,y:0},{x:0,y:0},{x:0,y:0}],description:''});$$("#card-entry img."+B.card_side).attr("src","img/bcard.jpg");return false;
 		if (B.card_side=='other') { 	 	
 			B.croper.destroy();
 			var options = { 
@@ -107,7 +108,8 @@ function card_image_process(imgUri) {
 }
 
 function card_image2dataUrl(imgUri, callback) {
-	console.log('card_image2dataUrl()')
+  console.log('card_image2dataUrl()')
+	
   var xhr = new XMLHttpRequest();
   xhr.onload = function() {
     var reader = new FileReader();
@@ -124,6 +126,7 @@ function card_image2dataUrl(imgUri, callback) {
 
 function card_ocr_process(data) {
 	console.log('card_ocr_process()');
+	
 	// Using cropping hints from vision, we crop, rotate and show the scanned card image...
 	var points = data.vertices;
 	var x0 = points[0].x - 10;
@@ -142,6 +145,9 @@ function card_ocr_process(data) {
 	var ocrLines = data.description.split("\n");
 	
 	B.container="#add_card_list";
+	B.list = "current";
+	B.index = false;
+	B.cardid = false;
 	
 	if (B.card_side=='recto') {
 		$$(B.container).html(base_tpl.replace(/lock/g,'unlock').replace(/{{unlock}}/g,'unlock').replace(/{{class}}/g, ''));
@@ -156,16 +162,17 @@ function card_ocr_process(data) {
 	}
 	
 	card_init();
+	
 	myApp.hidePreloader();
 }
 
 socket.on('card ocr', card_ocr_process);
 
+// data pour tester en local...
 var card_data = {
 	vertices:[{x:0,y:0},{x:0,y:0},{x:0,y:0},{x:0,y:0}],
 	description:'Louis Larivière \nAnalyste sénior\nCell: (514) 714-2011 \nllariviere@dubo.qc.ca \nwww.dubo.qc.ca\nDubo Électrique Ltée.\nMatériaux électriques et électroniques\n5780, rue Ontario Est \nMontréal (Québec) HIN 0A2 \nTél.:(514)255-7711 \nDirect:(514) 255-8855, poste221 \n1 800 361-4503 \nFax:(514) 255-9949'
 };
-
 var card_back_data = {
 	vertices:[{x:0,y:0},{x:0,y:0},{x:0,y:0},{x:0,y:0}],
 	description:'Verso de la carte\nAutres infos\nPlusieurs mots de plus'
