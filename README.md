@@ -1,2 +1,2 @@
-# bizscard
-Bizswiper beta with scan
+# biz
+Biz : virtual card app
