@@ -23,6 +23,10 @@ var $$ = Dom7;
 var B = {
 	about:'Bizswiper v0.6.0<br>2019-05',
 	server:'https://virtualbizcards.com:3333/',
+	options: {
+		ocr_match: false,
+		shake_level: 40
+	},
 	croper:{},
 	crop_opts:{"img":'img/b.png',"card":{ width: ($$("body").width() - 10), height: (($$("body").width() - 10) / 3.5 * 2), type: 'square' },"boundary":{ width: ($$("body").width() - 10), height: (($$("body").width() - 10) / 3.5 * 2)}}
 };
