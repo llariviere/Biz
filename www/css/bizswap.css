@@ -70,10 +70,11 @@
 #thecard .content > div.img,
 .popup-templates .content > div.img {
 	width:110px;height:110px;
-	border: dashed 1px rgba(0,0,0,.15);
+	/*border: dashed 1px rgba(0,0,0,.15);*/
 	background-position: center center;
 	background-size: contain;
 	vertical-align: middle;
+	box-shadow: inset 0px 0px 5px 2px #FFFFFF; 
 }
 
 #mycard .handle,
@@ -444,6 +445,7 @@ img.recto, img.verso {
 	margin-left: -40px;
 	line-height: 80px;
 	font-size: 40px;
+	box-shadow: inset 0px 0px 5px 5px #FFFFFF; 
 }
 .card-info-pastille.a {
 	border-radius: 10% 50% 50% 50%;
