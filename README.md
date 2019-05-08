@@ -1,2 +1,2 @@
-# biz
+# Biz
 Biz : virtual card app
