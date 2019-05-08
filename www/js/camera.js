@@ -22,7 +22,7 @@ function camera_options(srcType) {
 function camera_open(selection) {
 	console.log('camera_open()');
 	
-	if (typeof Camera === "undefined") {
+	 if (typeof Camera === "undefined") {
 		card_ocr_process({vertices:[{x:0,y:0},{x:0,y:0},{x:0,y:0},{x:0,y:0}],description:''});$$("#card-entry img."+B.card_side).attr("src","img/bcard.jpg");return false;
 		if (B.card_side=='other') { 	 	
 			B.croper.destroy();
@@ -39,7 +39,7 @@ function camera_open(selection) {
 			$$("#card-entry img."+B.card_side).attr("src","img/bcard.jpg");
 			return false;
 		}
-	}
+	 }
     var srcType = Camera.PictureSourceType.CAMERA;
     var options = camera_options(srcType);
     var func = card_image_process;
