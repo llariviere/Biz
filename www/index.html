@@ -52,7 +52,7 @@
 		      </a>
 		    </li>
 		    <li>
-		    	<a href="#" onclick="B.container='#card-form-list';card_form_open('mycard',false);" class="item-link my-card-open">
+		    	<a href="#" class="item-link my-card-open">
 		      <div class="item-content close-panel">
 		         <div class="item-inner">
 		            <div class="item-title">My profile</div>
@@ -62,7 +62,7 @@
 		      </a>
 		    </li>
 		    <li>
-		    	<a href="#" onclick="card_reload();" class="item-link my-preferences-open">
+		    	<a href="#" class="item-link my-card-reload">
 		      <div class="item-content close-panel">
 		         <div class="item-inner">
 		            <div class="item-title">Synch my data</div>
@@ -304,7 +304,7 @@
         
         <div class="toolbar tabbar">
 		    <div class="toolbar-inner">
-		        <a href="#index" class="tab-link index-open">
+		        <a href="#" class="tab-link index-open">
 		            <i class="fas fa-home fa-lg"></i>
 		        </a>
 		        <a href="#" class="tab-link current-list-open">
@@ -449,7 +449,7 @@
 			          	</a>
 			          </div>
 			          <div class="col-33">
-			          	<a href="#" onclick="card_record()" class="button button-big button-fill bg-green">
+			          	<a href="#" onclick="card_record(B.list, B.index)" class="button button-big button-fill bg-green">
 			          		<i class="fa fa-save"></i> Record 
 			          	</a>
 			          </div>
@@ -518,7 +518,7 @@
 		          	</a>
 		          </div>
 		          <div class="col-33">
-		          	<a href="#" onclick="card_record()" class="button button-big button-fill bg-green">
+		          	<a href="#" onclick="card_record(B.list, B.index)" class="button button-big button-fill bg-green">
 		          		<i class="fa fa-save"></i> Record
 		          	</a>
 		          </div>
@@ -745,7 +745,7 @@
       <div class="toolbar-inner">
         <div class="left"><a href="#" class="close-picker">Cancel</a></div>
         <div class="center" id="card_ocr_title">Pick words</div>
-        <div class="right"><a href="#" class="close-picker" id="card_ocr_ok">Ok</a></div>
+        <div class="right"><a href="#" class="close-picker" onClick="card_ocr_ok()">Ok</a></div>
       </div>
     </div>
     <div class="picker-modal-inner">
@@ -1018,11 +1018,17 @@
 	            <div class="item-after">{{company}}</div>
 	          </div>
 	      </div>
-	      <div class="swipeout-actions-left">
-	        <a href="#" onclick="card_auth('{{id}}', 'refuse');event.stopPropagation();" class="a-swipeout delete bg-red">Refuse</a>
+	      <!--div class="swipeout-actions-left">
+	        <a href="#" onclick="card_auth('{{id}}', 'refuse');event.stopPropagation();" class="card-refuse a-swipeout delete bg-red">Refuse</a>
 	      </div>
 	      <div class="swipeout-actions-right">
-	        <a href="#" onclick="card_auth('{{id}}', 'accept');event.stopPropagation();" class="a-swipeout bg-green">Accept</a>
+	        <a href="#" onclick="card_auth('{{id}}', 'accept');event.stopPropagation();" class="card-accept a-swipeout bg-green">Accept</a>
+	      </div-->
+	      <div class="swipeout-actions-left">
+	        <a href="#" class="card-refuse a-swipeout delete bg-red">Refuse</a>
+	      </div>
+	      <div class="swipeout-actions-right">
+	        <a href="#" class="card-accept a-swipeout bg-green">Accept</a>
 	      </div>
 	    </li>
 	    {{else}}
@@ -1044,14 +1050,11 @@
     
     <script type="text/javascript" src="js/framework7.min.js"></script>
     <script type="text/javascript" src="js/template.js"></script>
-    <script type="text/javascript" src="js/drag.min.js"></script>
-    <script type="text/javascript" src="js/category.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/socket.io.js"></script>
-    <script type="text/javascript" src="js/bizswap.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
     <script type="text/javascript" src="js/exchange.js"></script>
     <script type="text/javascript" src="js/camera.js"></script>
-    <script type="text/javascript" src="js/key.js"></script>
     <script type="text/javascript" src="js/croppie.js"></script>
   </body>
 </html>
