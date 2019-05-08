@@ -21,8 +21,8 @@ function card_offer(context,id) {
 	);
 }
 
-	console.log('card_offer_cancel('+id+')');
 function card_offer_cancel(id) {
+	console.log('card_offer_cancel('+id+')');
 	B.card_offered = false;
 	socket.emit('card offer cancel', {"cardid":id});
 }
