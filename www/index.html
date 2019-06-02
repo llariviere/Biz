@@ -12,7 +12,7 @@
 	 <link rel="stylesheet" href="css/font-awesome.min.css">
 	
     <link rel="stylesheet" href="css/croppie.css">
-    <link rel="stylesheet" href="css/bizswap.css">
+    <link rel="stylesheet" href="css/app.css">
     <link rel="shortcut icon" type="image/png" href="img/favicon.png"/>
     <link rel="manifest" href="js/manifest.json">
   </head>
@@ -210,8 +210,16 @@
             <div class="left">
               <a href="#" class="link icon-only open-panel"> <i class="fa fa-bars fa-lg"></i></a>
             </div>
-            <div class="center sliding"><h3>Bizswiper</h3></div>
+            <div class="center sliding"><h3>B.i.Z</h3></div>
           </div>
+          
+
+         <div class="navbar-inner cached" data-page="card-add-user">
+				<div class="left">
+					<a href="#index" class="link" id="cancelPhoto">Cancel</a>
+				</div>
+           <div class="center sliding">Add user</div>
+         </div>
           
 	      <div class="navbar-inner cached" data-page="card-entry">
             <div class="left"></div>
@@ -246,8 +254,7 @@
               <a href="#" class="link" id="fields_page_close">Close</a>
 				</div>
             <div class="center sliding">Choose a field name</div>
-            <div class="right">
-            </div>
+            <div class="right"></div>
           </div>
           
           <div class="navbar-inner cached" data-page="politics-services">
@@ -315,7 +322,7 @@
 		            	<span class="badge waiting-list-nbr bg-red" style="position: absolute;right:-15px;top:-10px;">0</span>
 		            </i>		            
 		        </a>
-		        <a href="#" class="tab-link card-camera-open">
+		        <a href="#" class="tab-link card-add-user">
 		            <i class="fas fa-user-plus fa-lg"></i>
 		        </a>
 		    </div>
@@ -498,13 +505,63 @@
                 	
           </div>
         
-          
+        
+          <div data-page="card-add-user" class="page cached">
+
+           <div class="page-content">
+           
+            <div class="block" id="card-photo">
+            	<img id="card-photo-front" class="front"/>
+            	<img id="card-photo-back" class="back hidden"/>
+            </div>
+            <div class="list-block inset">
+				  <p class="buttons-row">
+				    <button class="color-black col button button-big card-side front selected"><i class="fa fa-address-card fa-lg"></i> Front</button>
+				    <button class="color-black col button button-big card-side back"><i class="fa fa-credit-card fa-lg"></i> Back</button>
+				  </p>
+				  <p class="buttons-row button-photo">
+				    <button class="button button-big color-black" id="capturePhoto">Take photo of <b><span class="card-side">front</span></b></button>
+				  </p>
+				  <p class="buttons-row button-photo">
+				    <button class="button button-big color-black" id="listPhoto">Choose from file</button>
+				  </p>
+				  <p class="buttons-row button-photo">
+				    <button class="button button-big color-black" id="savePhoto">Save to file</button>
+				  </p>
+				  <p class="buttons-row button-photo">
+				    <button class="button button-big color-black" id="processPhoto">Transfer to card</button>
+				  </p>
+				</div>
+	        	
+				<div class="list-block card-fields">
+		        <ul id="add_card_list"></ul>
+				</div>
+				
+		      <div class="content-block card-fields">
+		        <div class="row">
+		          <div class="col-50">
+		          	<a href="#" onclick="B.container='#add_card_list';card_field_add();" class="button button-big button-fill bg-blue">
+		          		<i class="fa fa-plus-square"></i> Field
+		          	</a>
+		          </div>
+		          <div class="col-50">
+		          	<a href="#" onclick="card_record(B.list, B.index)" class="button button-big button-fill bg-green">
+		          		<i class="fa fa-save"></i> Record
+		          	</a>
+		          </div>
+		        </div>
+		      </div>
+				
+          </div>
+        </div>
+        
+        
         <div class="page cached" id="card-entry" data-page="card-entry">
 		      		        
 	        <div class="page-content">
 	        	
 				<div class="list-block">
-		        <ul id="add_card_list"></ul>
+		        <ul id="add_card_list2"></ul>
 				</div>
 				
 		      <div class="content-block">
@@ -1056,5 +1113,9 @@
     <script type="text/javascript" src="js/exchange.js"></script>
     <script type="text/javascript" src="js/camera.js"></script>
     <script type="text/javascript" src="js/croppie.js"></script>
+    
+    <!--script type="text/javascript" src="js/category.js"></script>
+    <script type="text/javascript" src="js/key.js"></script>
+    <script type="text/javascript" src="js/drag.min.js"></script-->
   </body>
 </html>
