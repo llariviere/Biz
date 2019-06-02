@@ -147,12 +147,12 @@
 									
 									$$("#ulPhoto").append('<li onClick="loadPhoto(\''+dirEntry.name+'\')" class="item-content">\
 								 <div class="item-inner item-cell">\
-								 	<div class="item-row">\
-								      <div class="item-cell">'+dirDate.toString()+'</div>\
+								 	<div class="row">\
+								      <div class="col-100">'+dirDate.toString()+'</div>\
 								    </div>\
-								    <div class="item-row">\
-								      <div class="item-cell thumb"><img src="'+ frontfile +'" /></div>\
-								      <div class="item-cell thumb"><img src="'+ backfile  +'" /></div>\
+								    <div class="row">\
+								      <div class="col-50 thumb"><img src="'+ frontfile +'" /></div>\
+								      <div class="col-50 thumb"><img src="'+ backfile  +'" /></div>\
 								    </div>\
 							    </div>\
 							</li>')
@@ -202,7 +202,6 @@
 				//dirEntry.removeRecursively();
 			   
 			   $$("#processPhoto").parent().removeClass("hidden");
-				B.dynamicPopup.close();
 				B.fromfile = true;
 			});
 		}, onFail);
