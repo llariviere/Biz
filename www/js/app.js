@@ -977,7 +977,7 @@ function card_cell(e) {
 	
 	var cell = e.textContent.substr(3).replace(/[^\d]/g,'');
 	
-	if (typeof phonedialer == 'undefined') return false;
+	if (typeof cordova.plugins.phonedialer == 'undefined') return false;
 	cordova.plugins.phonedialer.dial(
 	  cell, 
 	  function(err) {
