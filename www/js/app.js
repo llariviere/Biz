@@ -4,7 +4,7 @@
 	precompileTemplates: true,
 	template7Pages: true,
 	allowDuplicateUrls:true,
-	modalTitle: 'Bizswiper',
+	modalTitle: 'B.i.Z',
 	modalButtonCancel: 'Cancel...',
 	modalPreloaderTitle: 'One moment please...',
 	scrollTopOnStatusbarClick: true,
@@ -21,10 +21,10 @@ var mySwiper = myApp.swiper('.swiper-container', {
 var $$ = Dom7;
 
 var B = {
-	about:'Bizswiper v0.6.0<br>2019-05',
+	about:'B.i.Z v0.7.0<br>2019-06',
 	server:'https://virtualbizcards.com:3333/',
 	options: {
-		ocr_match: false,
+		ocr_match: true,
 		shake_level: 40
 	},
 	croper:{},
@@ -320,7 +320,7 @@ function card_init() {
 			if (B.card_side) add_card_word_detect();
 		});
 		
-		if (B.card_side=='recto') {
+		if (B.card_side=='front') {
 			
 			if ($$("#card_ocr_words").find(".word").length) {
 				var html = '<div class="list-block" style="margin:0px;line-height:35px;"> \
@@ -519,7 +519,7 @@ function card_record() {
 	
 	// For scan entry we record the original image...
 	if (B.container=='#add_card_list' && scanImg[B.card_side].dataUrl!=undefined) { 
-		pars[(B.card_side=='recto' ? '44' : '45')] = scanImg[B.card_side].dataUrl;
+		pars[(B.card_side=='front' ? '44' : '45')] = scanImg[B.card_side].dataUrl;
 	}
 		
 	// Send to sender...
@@ -1515,18 +1515,26 @@ $$('.a-swipeout').on('click', function () {
 	return false;
 });
 
-$$(".card-camera-open").on("click", function(){
+$$(".card-add-user").on("click", function(){
+	console.log('card-add-user');
+	
+	mainView.router.load({pageName: 'card-add-user'});
+	$$(".card-fields, .button-photo").addClass("hidden");
+	$$("#capturePhoto, #listPhoto").parent().removeClass("hidden");
+	
+	
+	/*
 	$$(".card-back-camera-open").show();
 	$$("#card-entry").find("img").attr("src","");
-	mainView.router.load({pageName: 'card-entry'});
-	B.card_side = 'recto';
+	B.card_side = 'front';
 	$$("#add_card_list").html('');
 	$$("#card_ocr_words").html('');
 	camera_open(false);
+	*/
 });
 
 $$(".card-back-camera-open").on("click", function(){
-	B.card_side = 'verso';
+	B.card_side = 'back';
 	camera_open(false);
 });
 
