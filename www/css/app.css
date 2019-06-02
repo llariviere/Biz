@@ -557,13 +557,13 @@ img.recto, img.verso {
 	display: none;
 }
 
-.item-cell.thumb {
+.col-50.thumb {
 	border: solid 1px rgb(33,33,66);
 	border-radius: 5px;
 	padding: 0;
 }
 
-.item-cell.thumb img {
+.col-50.thumb img {
 	max-width: 100%;
 	max-height: 100%;
 }
