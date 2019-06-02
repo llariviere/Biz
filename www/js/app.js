@@ -1521,7 +1521,9 @@ $$(".card-add-user").on("click", function(){
 	mainView.router.load({pageName: 'card-add-user'});
 	$$(".card-fields, .button-photo").addClass("hidden");
 	$$("#capturePhoto, #listPhoto").parent().removeClass("hidden");
-	
+	$$('#card-photo-front, #card-photo-back').attr("src","")
+	$$(".button.card-side.back").trigger("click");
+	$$(".button.card-side.front").trigger("click");
 	
 	/*
 	$$(".card-back-camera-open").show();
