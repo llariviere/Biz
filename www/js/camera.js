@@ -224,6 +224,7 @@
 			var image = new Image();
 			
 			image.onload = function () {
+				console.log(this);
 				var canvas = document.createElement('canvas');
 				canvas.width = this.naturalWidth; // or 'width' if you want a special/scaled size
 				canvas.height = this.naturalHeight; // or 'height' if you want a special/scaled size
@@ -238,7 +239,9 @@
 		}
 		
 		if ($$('#card-photo-front').attr("src")) {
+			console.log('front');
 			getDataUri($$('#card-photo-front').attr("src"), function(dataUrl){
+				console.log(dataUrl);
 				socket.emit('card ocr', {photo: dataUrl, cardid: mycard.id});
 			});
 		}
