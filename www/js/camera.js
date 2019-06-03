@@ -221,6 +221,7 @@
 		}, 8000);
 		
 		function getDataUrl(img) {
+			console.log('getDataUrl(img)');
 		   var canvas = document.createElement('canvas');
 	      canvas.width = img.width;
 	      canvas.height = img.height;
@@ -232,15 +233,19 @@
 		if ($$('#card-photo-front').attr("src")) {
 			$$('#card-photo-front').on("click", function(img){
 				var dataUrl = getDataUrl(img);
+				console.log(dataUrl);
 				socket.emit('card ocr', {photo:dataUrl.replace(/^data:image\/(png|jpg|jpeg);base64,/, ''), cardid: mycard.id});
 			});
+			$$('#card-photo-front').trigger("click");
 		}
 		
 		if ($$('#card-photo-back').attr("src")) {
 			$$('#card-photo-back').on("click", function(img){
 				var dataUrl = getDataUrl(img);
+				console.log(dataUrl);
 				socket.emit('card ocr', {photo:dataUrl.replace(/^data:image\/(png|jpg|jpeg);base64,/, ''), cardid: mycard.id});
 			});
+			$$('#card-photo-back').trigger("click");
 		}
 	}
 	
