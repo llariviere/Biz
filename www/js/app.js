@@ -21,7 +21,7 @@ var mySwiper = myApp.swiper('.swiper-container', {
 var $$ = Dom7;
 
 var B = {
-	about:'B.i.Z v0.7.0<br>2019-06',
+	about:'B.i.Z is a product of Kontakt Mondo inc. and all related subdiaries . Reserved brand blblbl.<p> KontaktMondo is an incorporation under Canada law bbllblba on May xx 2019. </p> <p>Current version in used: 0.7.0 (2019-06)',
 	server:'https://virtualbizcards.com:3333/',
 	options: {
 		ocr_match: true,
