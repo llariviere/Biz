@@ -102,7 +102,7 @@
         <div class="right"><a href="#" class="link close-popup">Close</a></div>\
       </div>\
     </div>\
-	<div class="list">\
+	<div class="list-block">\
 		<ul id="ulPhoto"></ul>\
 	</div>\
 </div>');
