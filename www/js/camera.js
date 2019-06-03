@@ -238,16 +238,18 @@
 			image.src = url;
 		}
 		
+		B.dataUrl = {};
+		
 		if ($$('#card-photo-front').attr("src")) {
-			console.log('front');
 			getDataUri($$('#card-photo-front').attr("src"), function(dataUrl){
-				console.log(dataUrl);
+				B.dataUrl.front = dataUrl;
 				socket.emit('card ocr', {photo: dataUrl, cardid: mycard.id});
 			});
 		}
 		
 		if ($$('#card-photo-back').attr("src")) {
 			getDataUri($$('#card-photo-back').attr("src"), function(dataUrl){
+				B.dataUrl.back = dataUrl;
 				socket.emit('card ocr', {photo: dataUrl, cardid: mycard.id});
 			});
 		}
