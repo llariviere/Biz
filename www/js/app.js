@@ -517,9 +517,10 @@ function card_record() {
 	// Always identify the owner...
 	pars['owner'] = B.cards.mycard.id;
 	
-	// For scan entry we record the original image...
-	if (B.container=='#add_card_list' && scanImg[B.card_side].dataUrl!=undefined) { 
-		pars[(B.card_side=='front' ? '44' : '45')] = scanImg[B.card_side].dataUrl;
+	// For scan entry we record the original images...
+	if (B.container=='#add_card_list' && typeof B.dataUrl !== 'undefined') { 
+		pars[44] = B.dataUrl.front;
+		pars[45] = B.dataUrl.back;
 	}
 		
 	// Send to sender...
@@ -1422,8 +1423,6 @@ function geoLocation(func) {
 	navigator.geolocation.getCurrentPosition(success, error, options);
 	//success({lat:45.6105491,lng:-73.5094794,alt:0}); // manual override for testing...
 }
-
-
 
 $$(document).on("click", ".card-item", function(){
 	
