@@ -220,6 +220,37 @@
 	   	myApp.hidePreloader();
 		}, 8000);
 		
+		let getImageBlob = function(url){
+		  return new Promise( async resolve=>{
+		    let response = await fetch( url );
+		    let blob = response.blob();
+		    resolve( blob );
+		  });
+		};
+		
+		// convert a blob to base64
+		let blobToBase64 = function(blob) {
+		  return new Promise( resolve=>{
+		    let reader = new FileReader();
+		    reader.onload = function() {
+		      let dataUrl = reader.result;
+		      resolve(dataUrl);
+		    };
+		    reader.readAsDataURL(blob);
+		  });
+		}
+		
+		// combine the previous two functions to return a base64 encode image from url
+		let getBase64Image = async function( url ){
+		  let blob = await getImageBlob( url );
+		  let base64 = await blobToBase64( blob );
+		  return base64;
+		}
+		
+		// test time!
+		/*
+		getBase64Image( 'http://placekitten.com/g/200/300' ).then( base64Image=> console.log( base64Image) );
+		
 		function getDataUrl(img) {
 			console.log('getDataUrl(img)');
 		   var canvas = document.createElement('canvas');
@@ -229,14 +260,12 @@
 	      ctx.drawImage(img, 0, 0); 
 	      return canvas.toDataURL('image/jpeg');
 		};
+		*/
 		
 		if ($$('#card-photo-front').attr("src")) {
-			$$('#card-photo-front').on("click", function(img){
-				var dataUrl = getDataUrl(img);
-				console.log(dataUrl);
-				socket.emit('card ocr', {photo:dataUrl.replace(/^data:image\/(png|jpg|jpeg);base64,/, ''), cardid: mycard.id});
-			});
-			$$('#card-photo-front').trigger("click");
+			getBase64Image( $$('#card-photo-front').attr("src") ).then( 
+				base64Image=> socket.emit('card ocr', {photo:base64Image.replace(/^data:image\/(png|jpg|jpeg);base64,/, ''), cardid: mycard.id});
+			);
 		}
 		
 		if ($$('#card-photo-back').attr("src")) {
