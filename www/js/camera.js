@@ -263,18 +263,25 @@
 		*/
 		
 		if ($$('#card-photo-front').attr("src")) {
-			getBase64Image( $$('#card-photo-front').attr("src") ).then( 
-				base64Image=> socket.emit('card ocr', {photo:base64Image.replace(/^data:image\/(png|jpg|jpeg);base64,/, ''), cardid: mycard.id});
-			);
+			getBase64Image( $$('#card-photo-front').attr("src") ).then( function (response) {
+				var dataUrl = response.replace(/^data:image\/(png|jpg|jpeg);base64,/, '');
+				socket.emit('card ocr', {photo: dataUrl, cardid: mycard.id});
+			});
 		}
 		
 		if ($$('#card-photo-back').attr("src")) {
+			getBase64Image( $$('#card-photo-back').attr("src") ).then( function (response) {
+				var dataUrl = response.replace(/^data:image\/(png|jpg|jpeg);base64,/, '');
+				socket.emit('card ocr', {photo: dataUrl, cardid: mycard.id});
+			});
+			/*
 			$$('#card-photo-back').on("click", function(img){
 				var dataUrl = getDataUrl(img);
 				console.log(dataUrl);
 				socket.emit('card ocr', {photo:dataUrl.replace(/^data:image\/(png|jpg|jpeg);base64,/, ''), cardid: mycard.id});
 			});
 			$$('#card-photo-back').trigger("click");
+			*/
 		}
 	}
 	
