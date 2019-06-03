@@ -94,7 +94,7 @@
 	
 	function listPhoto() {
 		
-		B.dynamicPopup = myApp.popup('<div class="popup" style="overflow-y: scroll">\
+		myApp.popup('<div class="popup" style="overflow-y: scroll">\
 		<div class="navbar">\
       <div class="navbar-inner">\
         <div class="left"></div>\
@@ -145,9 +145,9 @@
 									
 									var dirDate = new Date(parseInt(dirEntry.name));
 									
-									$$("#ulPhoto").append('<li onClick="loadPhoto(\''+dirEntry.name+'\')" class="item-content">\
-								 <div class="item-inner item-cell">\
-								 	<div class="row">\
+									$$("#ulPhoto").append('<li class="swipeout" onClick="loadPhoto(\''+dirEntry.name+'\')" id="dir_'+dirEntry.name+'" class="item-content">\
+								 <div class="swipeout-content item-content">\
+								 	 <div class="row">\
 								      <div class="col-100">'+dirDate.toString()+'</div>\
 								    </div>\
 								    <div class="row">\
@@ -155,6 +155,9 @@
 								      <div class="col-50 thumb"><img src="'+ backfile  +'" /></div>\
 								    </div>\
 							    </div>\
+							    <div class="swipeout-actions-left">\
+						        <a href="# onclick="delPhoto(\''+dirEntry.name+'\');event.stopPropagation();" class="delete  bg-red">Delete</a>\
+						      </div>\
 							</li>')
 	
 								}
@@ -198,6 +201,8 @@
 				$$('#card-photo-front').attr("src", frontfile);
 				$$('#card-photo-back').attr("src",  backfile);
 				$$(".button.card-side.front").trigger("click");
+				
+				myApp.closeModal();
 				
 				//dirEntry.removeRecursively();
 			   
@@ -291,7 +296,14 @@
 		
 		myApp.hidePreloader();
 	}
-
+	
+	function delPhoto(dirname) {
+		B.cwd_ = B.fs_.root;		
+		B.cwd_.getDirectory(dirname, {}, function(dirEntry) {
+			$$("#dir_"+dirname).remove();
+			dirEntry.removeRecursively();			
+		}, onFail);
+	}
 	
 	function onFail(message) {
 	    myApp.alert('Failed because: ' + message);
