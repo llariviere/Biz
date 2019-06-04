@@ -148,11 +148,11 @@
 									$$("#ulPhoto").append('<li class="swipeout" onClick="loadPhoto(\''+dirEntry.name+'\')" id="dir_'+dirEntry.name+'"">\
 								  <a href="#" class="swipeout-content item-content item-link">\
 								      <div class="item-inner">\
-							          <div class="item-title-row"> \
-							           '+ dirDate.toString().substr(0,24) +'\
-							          </div>\
-							          <div class="item-after"></div>\
-											<div class="item-subtitle-row"> \
+								         <div class="item-title-row"> \
+								           '+ dirDate.toString().substr(0,24) +'\
+								         </div>\
+								         <div class="item-after"></div>\
+											<div class="item-subtitle row"> \
 										      <div class="col-50 thumb"><img src="'+ frontfile +'" /></div> \
 										      <div class="col-50 thumb"><img src="'+ backfile +'" /></div> \
 											</div> \
