@@ -146,24 +146,27 @@
 									var dirDate = new Date(parseInt(dirEntry.name));
 									
 									$$("#ulPhoto").append('<li class="swipeout" onClick="loadPhoto(\''+dirEntry.name+'\')" id="dir_'+dirEntry.name+'"">\
-								 <div class="swipeout-content">\
+								  <div class="swipeout-content">\
 								    <a href="#" class="item-content item-link">\
 								      <div class="item-inner">\
-										  <div class="item-title-row">\
-								          <div class="item-title">'+dirDate.toString()+'</div>\
-								          <div class="item-after"></div>\
+								        <div class="item-title-row">\
+								          <div class="item-title">'+dirDate.toString().substr(0,24)+'</div>\
+								          <div class="item-after">17:14</div>\
 								        </div>\
-								        <div class="item-text row">\
-									      <div class="col-50 thumb"><img src="'+ frontfile +'" /></div>\
-									      <div class="col-50 thumb"><img src="'+ backfile  +'" /></div>\
+								        <div class="item-subtitle">\
+									        <div class="row">\
+										      <div class="col-50 thumb"><img src="'+ frontfile +'" /></div>\
+										      <div class="col-50 thumb"><img src="'+ backfile  +'" /></div>\
+									        </div>\
 								        </div>\
 								      </div>\
 								    </a>\
-							    </div>\
-							    <div class="swipeout-actions-left">\
-						        <a href="# onclick="delPhoto(\''+dirEntry.name+'\');event.stopPropagation();" class="delete  bg-red">Delete</a>\
-						      </div>\
-							</li>')
+								  </div>\
+							    
+							     <div class="swipeout-actions-left">\
+						          <a href="#" onClick="delPhoto(\''+dirEntry.name+'\');event.stopPropagation();" class="delete  bg-red">Delete</a>\
+						        </div>\
+							   </li>')
 	
 								}
 	      				});
