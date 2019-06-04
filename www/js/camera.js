@@ -156,7 +156,7 @@
 								        <div class="item-subtitle">\
 									        <div class="row">\
 										      <div class="col-50 thumb"><img src="'+ frontfile +'" /></div>\
-										      <div class="col-50 thumb"><img src="'+ backfile  +'" /></div>\
+										      <div class="col-50 thumb"><img src="'+ backfile +'" /></div>\
 									        </div>\
 								        </div>\
 								      </div>\
