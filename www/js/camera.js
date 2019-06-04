@@ -150,13 +150,13 @@
 								    <a href="#" class="item-content item-link">\
 								      <div class="item-inner">\
 								        <div class="item-title-row">\
-								          <div class="item-title">'+dirDate.toString().substr(0,24)+'</div>\
+								          <div class="item-title">' + dirDate.toString().substr(0,24) + '</div>\
 								          <div class="item-after">17:14</div>\
 								        </div>\
 								        <div class="item-subtitle">\
 									        <div class="row">\
-										      <div class="col-50 thumb"><img src="'+ frontfile +'" /></div>\
-										      <div class="col-50 thumb"><img src="'+ backfile +'"/></div> \
+										      <div class="col-50 thumb"><img src="'+ frontfile +'" /></div> \
+										      <div class="col-50 thumb"><img src="'+ backfile +'" /></div> \
 									        </div>\
 								        </div>\
 								      </div>\
