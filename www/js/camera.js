@@ -145,15 +145,20 @@
 									
 									var dirDate = new Date(parseInt(dirEntry.name));
 									
-									$$("#ulPhoto").append('<li class="swipeout" onClick="loadPhoto(\''+dirEntry.name+'\')" id="dir_'+dirEntry.name+'" class="item-content">\
-								 <div class="swipeout-content item-content">\
-								 	 <div class="row">\
-								      <div class="col-100">'+dirDate.toString()+'</div>\
-								    </div>\
-								    <div class="row">\
-								      <div class="col-50 thumb"><img src="'+ frontfile +'" /></div>\
-								      <div class="col-50 thumb"><img src="'+ backfile  +'" /></div>\
-								    </div>\
+									$$("#ulPhoto").append('<li class="swipeout" onClick="loadPhoto(\''+dirEntry.name+'\')" id="dir_'+dirEntry.name+'"">\
+								 <div class="swipeout-content">\
+								    <a href="#" class="item-content item-link">\
+								      <div class="item-inner">\
+										  <div class="item-title-row">\
+								          <div class="item-title">'+dirDate.toString()+'</div>\
+								          <div class="item-after"></div>\
+								        </div>\
+								        <div class="item-text row">\
+									      <div class="col-50 thumb"><img src="'+ frontfile +'" /></div>\
+									      <div class="col-50 thumb"><img src="'+ backfile  +'" /></div>\
+								        </div>\
+								      </div>\
+								    </a>\
 							    </div>\
 							    <div class="swipeout-actions-left">\
 						        <a href="# onclick="delPhoto(\''+dirEntry.name+'\');event.stopPropagation();" class="delete  bg-red">Delete</a>\
@@ -203,8 +208,6 @@
 				$$(".button.card-side.front").trigger("click");
 				
 				myApp.closeModal();
-				
-				//dirEntry.removeRecursively();
 			   
 			   $$("#processPhoto").parent().removeClass("hidden");
 				B.fromfile = true;
@@ -255,26 +258,8 @@
 		}
 	}
 	
-	socket.on('card ocr', card_ocr_process);
-	
-	function card_ocr_process(data) {
+	socket.on('card ocr', function(data) {
 		console.log('card_ocr_process()');
-		
-		// Using cropping hints from vision, we crop, rotate and show the scanned card image...
-		/*
-		var points = data.vertices;
-		var x0 = points[0].x - 10;
-		var y0 = points[0].y - 10;
-		var x1 = points[2].x - x0 + 20;
-		var y1 = points[2].y - y0 + 20;
-		
-		var canvas = document.createElement('canvas');
-		canvas.width = x1;
-		canvas.height = y1;
-		var context = canvas.getContext('2d');
-		var cardImage = $$("#card-entry").find("img."+B.card_side);
-		cardImage.attr("src",scanImg[B.card_side].dataUrl);
-		*/
 		
 		// Using text detection result from vision, we add a formatted list of fields...
 		var ocrLines = data.description.split("\n");
@@ -285,15 +270,6 @@
 		B.cardid = false;
 		$$(".card-fields").removeClass("hidden");
 		$$(B.container).html(base_tpl.replace(/lock/g,'unlock').replace(/{{unlock}}/g,'unlock').replace(/{{class}}/g, ''));
-		
-		/*
-		if (B.card_side=='recto') {
-			$$(B.container).html(base_tpl.replace(/lock/g,'unlock').replace(/{{unlock}}/g,'unlock').replace(/{{class}}/g, ''));
-		}
-		else { 
-			$$(".card-back-camera-open").hide(); 
-		}
-		*/
 		
 		for (var ii=0; ii<ocrLines.length; ii++) {
 			var ocrLine = ocrLines[ii].replace(/^[ ]+|[ ]+$/g,'');
@@ -306,9 +282,10 @@
 		card_init();
 		
 		myApp.hidePreloader();
-	}
+	});
 	
 	function delPhoto(dirname) {
+		console.log('delPhoto('+dirname+')');
 		B.cwd_ = B.fs_.root;		
 		B.cwd_.getDirectory(dirname, {}, function(dirEntry) {
 			$$("#dir_"+dirname).remove();
