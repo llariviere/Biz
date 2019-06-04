@@ -156,13 +156,12 @@
 								        <div class="item-subtitle">\
 									        <div class="row">\
 										      <div class="col-50 thumb"><img src="'+ frontfile +'" /></div>\
-										      <div class="col-50 thumb"><img src="'+ backfile +'" /></div>\
+										      <div class="col-50 thumb"><img src="'+ backfile +'"/></div> \
 									        </div>\
 								        </div>\
 								      </div>\
 								    </a>\
 								  </div>\
-							    
 							     <div class="swipeout-actions-left">\
 						          <a href="#" onClick="delPhoto(\''+dirEntry.name+'\');event.stopPropagation();" class="delete  bg-red">Delete</a>\
 						        </div>\
