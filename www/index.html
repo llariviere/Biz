@@ -237,7 +237,7 @@
 				<div class="left">
 					<a href="#index" class="link" id="cancelPhoto">Cancel</a>
 				</div>
-           <div class="center sliding">Add user</div>
+           <div class="center sliding">Add cards</div>
          </div>
           
 	      <div class="navbar-inner cached" data-page="card-entry">
@@ -714,9 +714,9 @@
 			<div class="page cached no-tabbar" id="card-email" data-page="card-email">
 				<div class="page-content">
 					<div class="content-block-title">New message</div>
+					
 					<div class="list-block" style="height:calc(100% - 180px);">
 					  <ul style="height:calc(100% - 40px);">
-					    <!-- Text inputs -->
 					    <li>
 					      <div class="item-content">
 					        <div class="item-inner">
@@ -732,7 +732,7 @@
 					        <div class="item-inner">
 					          <div class="item-title label">Subject : </div>
 					          <div class="item-input">
-					            <input type="text">
+					            <input type="text" class="subject">
 					          </div>
 					        </div>
 					      </div>
@@ -755,7 +755,7 @@
 			          	<a href="#" onclick="mainView.router.back()" class="button button-big button-fill bg-red">Cancel</a>
 			          </div>
 			          <div class="col-50">
-			          	<a href="#" onclick="" class="button button-big button-fill bg-green">Send</a>
+			          	<a href="#" onclick="card_email_send()" class="button button-big button-fill bg-green">Send</a>
 			          </div>
 			        </div>
 			      </div>
@@ -803,8 +803,56 @@
 				</div>
 			</div>
 			
-			<div class="page cached no-tabbar" data-page="help">
-				<div class="page-content"></div>
+			<div class="page cached no-tabbar" data-page="help" id="help">
+				<div class="page-content">
+					 <div class="content-block-title">Please help us build a f.a.q. database.</div>
+					 <div class="content-block-title" style="margin-top:0;">write as much details that you can.</div>
+					<div class="list-block"  style="height:calc(100% - 180px);">
+					  <ul style="height:calc(100% - 40px);">
+					    <li>
+					      <div class="item-content">
+					        <div class="item-inner">
+					          <div class="item-title label">To : </div>
+					          <div class="item-input">
+					            <input type="text" class="to" value="help@biz" readonly="true">
+					          </div>
+					        </div>
+					      </div>
+					    </li>	
+					    <li>
+					      <div class="item-content">
+					        <div class="item-inner">
+					          <div class="item-title label">Subject : </div>
+					          <div class="item-input">
+					            <input type="text" class="subject" value="Need help" readonly="true">
+					          </div>
+					        </div>
+					      </div>
+					    </li>	
+					    <li style="height:100%;">
+					      <div class="item-content" style="height:100%;">
+					        <div class="item-inner" style="height:100%;">
+					          <div class="item-input" style="height:100%;">
+					            <textarea style="height:100%;"></textarea>
+					          </div>
+					        </div>
+					      </div>
+					    </li>
+					  </ul>
+					</div>
+					
+			      <div class="content-block">
+			        <div class="row">
+			          <div class="col-50">
+			          	<a href="#" onclick="mainView.router.back()" class="button button-big button-fill bg-red">Cancel</a>
+			          </div>
+			          <div class="col-50">
+			          	<a href="#" onclick="card_email_send('help')" class="button button-big button-fill bg-green">Send</a>
+			          </div>
+			        </div>
+			      </div>
+			      
+				</div>
 			</div>
 			
       </div>
@@ -1131,11 +1179,7 @@
     <script type="text/javascript" src="js/socket.io.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
     <script type="text/javascript" src="js/exchange.js"></script>
-    <script type="text/javascript" src="js/camera.js"></script>
+    <script type="text/javascript" src="js/camera.js?2019"></script>
     <script type="text/javascript" src="js/croppie.js"></script>
-    
-    <!--script type="text/javascript" src="js/category.js"></script>
-    <script type="text/javascript" src="js/key.js"></script>
-    <script type="text/javascript" src="js/drag.min.js"></script-->
   </body>
 </html>
