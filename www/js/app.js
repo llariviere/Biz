@@ -916,8 +916,29 @@ function card_email(e) {
 	if ($$(e).parents(".draggable").attr("id")=='mycard') return false;
 	
 	var email = e.textContent.substr(3);
+	$$("#card-email").find("input, textarea").val('');
 	$$("#card-email").find(".to").val(email)
 	mainView.router.load({pageName: 'card-email'});
+}
+
+function card_email_send(help) {
+	var container = help || "card-email";
+	var pars = {
+		"from": B.cards.mycard.id,
+		"firstname": B.cards.mycard.firstname,
+		"lastname": B.cards.mycard.lastname,
+		"to": $$("#"+container).find("input.to").val(),
+		"sujet": $$("#"+container).find("input.subject").val(),
+		"msg": $$("#"+container).find("textarea").val()
+	}; 
+	var Email = /\w+@\w+/;
+	if (pars.to.match(Email)) {
+		socket.emit('card share email',pars);
+		mainView.router.back();
+	} else {
+		myApp.alert("The email address is not valid.")
+	}
+	$$("#"+container).find("textarea").val('');
 }
 
 function card_messages(e) {
@@ -1138,7 +1159,15 @@ function card_share(list, by) {
   							var email = value;
   							var Email = /\w+@\w+/;
   							if (value.match(Email)) {
-  								socket.emit('card share email', {"from":B.cards.mycard.id,"cardid":id,"email":email});
+  								var pars =  {
+  									"from":B.cards.mycard.id,
+  									"cardid":id,
+  									"email":email, 
+  									"firstname": B.cards.mycard.firstname, 
+  									"lastname": B.cards.mycard.lastname
+  								}
+								console.log(pars)
+  								socket.emit('card share email',pars);
   							} else {
   								myApp.alert("The address is not valid. Send aborted");
   							}
