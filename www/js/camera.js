@@ -93,126 +93,8 @@
 	}
 	
 	function listPhoto() {
-		
-		myApp.popup('<div class="popup" style="overflow-y: scroll">\
-		<div class="navbar">\
-      <div class="navbar-inner">\
-        <div class="left"></div>\
-        <div class="title">List of saved card photos</div>\
-        <div class="right"><a href="#" class="link close-popup">Close</a></div>\
-      </div>\
-    </div>\
-	<div class="list-block media-list">\
-		<ul id="ulPhoto"></ul>\
-	</div>\
-</div>');
-
-		if (typeof LocalFileSystem === "undefined") {
-			myApp.alert("Unable to open your file system!");
-			return false;
-		}
-
-		window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, function(fileSys) {
-			B.fs_ = fileSys;
-			B.cwd_ = B.fs_.root;
-			var html = [];
-	  		// On liste les dossiers...
-	  		ls_(function(dir_entries) {
-	         if (dir_entries.length) {
-	           console.log("dir_entries.length = "+dir_entries.length)
-	           
-	           for(var i=0; i<dir_entries.length; i++) {
-	           	 var entry = dir_entries[i];
-	           	 if (entry.isFile) {
-	           	 	dir_entries[i].remove();
-	           	 } else {
-	           	 	
-	           	 	B.dirname = entry.name;
-	           	 	
-	           	 	B.cwd_ = B.fs_.root;
-						B.cwd_.getDirectory(B.dirname, {}, function(dirEntry) {
-							B.cwd_ = dirEntry;
-							var frontfile = '', backfile = '';
-							ls_(function(file_entries) {
-	           	 			
-								if (file_entries.length) {
-									
-									for(var i=0; i<file_entries.length; i++) {
-										
-										if(file_entries[i].name=="front.png") frontfile = file_entries[i].nativeURL;
-										if(file_entries[i].name=="back.png")  backfile = file_entries[i].nativeURL;
-									}
-									
-									var dirDate = new Date(parseInt(dirEntry.name));
-									
-									$$("#ulPhoto").append('<li class="swipeout" onClick="loadPhoto(\''+dirEntry.name+'\')" id="dir_'+dirEntry.name+'"">\
-								  <a href="#" class="swipeout-content item-content item-link">\
-								      <div class="item-inner">\
-								         <div class="item-title-row"> \
-								           '+ dirDate.toString().substr(0,24) +'\
-								         </div>\
-								         <div class="item-after"></div>\
-											<div class="item-subtitle row"> \
-										      <div class="col-50 thumb"><img src="'+ frontfile +'" /></div> \
-										      <div class="col-50 thumb"><img src="'+ backfile +'" /></div> \
-											</div> \
-								      </div>\
-								  </a>\
-							     <div class="swipeout-actions-left">\
-						          <a href="#" onClick="delPhoto(\''+dirEntry.name+'\');event.stopPropagation();" class="delete  bg-red">Delete</a>\
-						        </div>\
-							   </li>')
-	
-								}
-	      				});
-						}, onFail);
-	           	 }
-	           }
-	         } 
-	         else {
-		         console.log("No entries...")
-	         }
-	      });
-      }, onFail);
-	}
-
-	function capturePhoto() {
-	    if (typeof Camera === "undefined") {
-			myApp.alert("No camera available");
-	    }
-	    else {
-	    	var options = setOptions(Camera.PictureSourceType.CAMERA);
-	    	navigator.camera.getPicture( function(imageUri) {
-			    $$('#card-photo-'+B.card_side).attr("src", imageUri);
-			    
-				 B.fromfile = false;
-			    $$("#savePhoto, #processPhoto").parent().removeClass("hidden");
-			}, onFail, options);
-	    }
-	}
-	
-	function loadPhoto(dirname) {
-		B.cwd_ = B.fs_.root;
-		B.cwd_.getDirectory(dirname, {}, function(dirEntry) {
-			B.cwd_ = dirEntry;
-			ls_(function(file_entries) {
-				var frontfile = '', backfile = '';
-				for(var i=0; i<file_entries.length; i++) {
-					if(file_entries[i].name=="front.png") frontfile = file_entries[i].nativeURL;
-					if(file_entries[i].name=="back.png")  backfile  = file_entries[i].nativeURL;
-				}
-				$$('#card-photo-front').attr("src", frontfile);
-				$$('#card-photo-back').attr("src",  backfile);
-				$$(".button.card-side.front").trigger("click");
-				
-				myApp.closeModal();
-			   
-			   $$("#processPhoto").parent().removeClass("hidden");
-				B.fromfile = true;
-			});
-		}, onFail);
-	}
-	
+	function capturePhoto() {	
+	function loadPhoto(dirname) {	
 	function processPhoto() {
 		console.log('processPhoto()');
 	
@@ -240,20 +122,38 @@
 		}
 		
 		B.dataUrl = {};
+		var initd = false;
 		
 		if ($$('#card-photo-front').attr("src")) {
 			getDataUri($$('#card-photo-front').attr("src"), function(dataUrl){
 				B.dataUrl.front = dataUrl;
-				socket.emit('card ocr', {photo: dataUrl, cardid: mycard.id});
+				socket.emit('card ocr', {photo: dataUrl, cardid: mycard.id, card_side: "front"});
+				if ($$('#card-photo-back').attr("src")) {
+					getDataUri($$('#card-photo-back').attr("src"), function(dataUrl){
+						B.dataUrl.back = dataUrl;
+						socket.emit('card ocr', {photo: dataUrl, cardid: mycard.id, card_side: "back"});
+					});
+				}
 			});
-		}
-		
-		if ($$('#card-photo-back').attr("src")) {
+			card_ocr_init();
+		} else if ($$('#card-photo-back').attr("src")) {
 			getDataUri($$('#card-photo-back').attr("src"), function(dataUrl){
 				B.dataUrl.back = dataUrl;
-				socket.emit('card ocr', {photo: dataUrl, cardid: mycard.id});
+				socket.emit('card ocr', {photo: dataUrl, cardid: mycard.id, card_side: "front"});
 			});
+			card_ocr_init();
 		}
+	}
+	
+	function card_ocr_init() {
+		B.container="#add_card_list";
+		B.list = "current";
+		B.index = false;
+		B.cardid = false;
+		$$(".card-fields").removeClass("hidden");
+		$$(B.container).html(base_tpl.replace(/lock/g,'unlock').replace(/{{unlock}}/g,'unlock').replace(/{{class}}/g, ''));
+		$$(".button-photo").addClass("hidden");
+		$$(".card-fields").parent().removeClass("hidden");
 	}
 	
 	socket.on('card ocr', function(data) {
@@ -262,22 +162,12 @@
 		// Using text detection result from vision, we add a formatted list of fields...
 		var ocrLines = data.description.split("\n");
 		
-		B.container="#add_card_list";
-		B.list = "current";
-		B.index = false;
-		B.cardid = false;
-		$$(".card-fields").removeClass("hidden");
-		$$(B.container).html(base_tpl.replace(/lock/g,'unlock').replace(/{{unlock}}/g,'unlock').replace(/{{class}}/g, ''));
-		
 		for (var ii=0; ii<ocrLines.length; ii++) {
 			var ocrLine = ocrLines[ii].replace(/^[ ]+|[ ]+$/g,'');
 			if (ocrLine.length) add_card_li_match(ii, ocrLine);
 		}
 		
-		$$(".button-photo").addClass("hidden");
-		$$(".card-fields").parent().removeClass("hidden");
-		
-		card_init();
+		card_init(data.card_side);
 		
 		myApp.hidePreloader();
 	});
