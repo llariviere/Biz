@@ -272,6 +272,7 @@
 		$$(B.container).html(base_tpl.replace(/lock/g,'unlock').replace(/{{unlock}}/g,'unlock').replace(/{{class}}/g, ''));
 		$$(".button-photo").addClass("hidden");
 		$$(".card-fields").parent().removeClass("hidden");
+		$$("#card_ocr_words").html('');
 	}
 	
 	socket.on('card ocr', function(data) {
