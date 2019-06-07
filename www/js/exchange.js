@@ -190,6 +190,8 @@ socket.on('card shared data', function(card) {
 				
 socket.on('card record', function (data) {
 	
+	myApp.hidePreloader();
+
 	switch(data.msg) {
 		case "UPDATED":
 			myApp.alert("Card updated!");
