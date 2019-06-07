@@ -317,7 +317,6 @@ function card_init(card_side) {
 			$$("#card_ocr_input").val(B.input_text);
 			B['input_name'] = $$(this).attr("name");
 			myApp.pickerModal(".picker-ocr-words");
-			//$$("#card_ocr_words").html("");
 			if (card_side) add_card_word_detect();
 		});
 		
@@ -444,6 +443,11 @@ function card_input_modal() {
 
 function card_record() {
 	console.log('card_record()');
+	
+	myApp.showPreloader('Recording...');
+	setTimeout(function () {
+   	myApp.hidePreloader();
+	}, 8000);
 
 	var pars = {};
 	
