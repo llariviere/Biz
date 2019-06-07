@@ -277,7 +277,7 @@ function is_locked() {
 	return !$$(this).hasClass('lock');
 }
 
-function card_init() {
+function card_init(card_side) {
 	console.log('card_init()');
 	
 	if (B.container=="card-form-list") {
@@ -316,12 +316,12 @@ function card_init() {
 			B.input_text = $$(this).val();
 			$$("#card_ocr_input").val(B.input_text);
 			B['input_name'] = $$(this).attr("name");
-			$$("#card_ocr_words").html("");
 			myApp.pickerModal(".picker-ocr-words");
-			if (B.card_side) add_card_word_detect();
+			//$$("#card_ocr_words").html("");
+			if (card_side) add_card_word_detect();
 		});
 		
-		if (B.card_side=='front') {
+		if (card_side=='front') {
 			
 			if ($$("#card_ocr_words").find(".word").length) {
 				var html = '<div class="list-block" style="margin:0px;line-height:35px;"> \
