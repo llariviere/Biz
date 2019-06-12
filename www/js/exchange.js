@@ -31,7 +31,7 @@ function card_offered(context,id) {
 	console.log('card_offered()');
 	B.card_offered = false;
    
-	var p = geoLocation(function(p){
+	geoLocation(function(p){
 		console.log({"cardid":B.cards.mycard.id, "id":id ,"lat":p.latitude, "lng":p.longitude, "alt":p.altitude})
 		socket.emit('card offer', {"cardid":B.cards.mycard.id, "id":id ,"lat":p.latitude, "lng":p.longitude, "alt":p.altitude});
 	});
