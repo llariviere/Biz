@@ -197,7 +197,7 @@
 	    }
 	    else {
 	    	var options = setOptions(Camera.PictureSourceType.PHOTOLIBRARY);
-	    	navigator.camera.getPicture( function(imageUri) {
+	    	navigator.camera.getPicture( function(imgUri) {
 	    		B.croper.destroy();
 				var options = { 
 					url:imgUri, 
