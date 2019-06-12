@@ -1,10 +1,10 @@
-/* Bizcard specific /var/www/html/card/js/app.js */
+/* B.i.Z specific /var/www/html/card/js/app.js */
 
  var myApp = new Framework7({
 	precompileTemplates: true,
 	template7Pages: true,
 	allowDuplicateUrls:true,
-	modalTitle: 'B.i.Z',
+	modalTitle: 'B.&iuml;.Z',
 	modalButtonCancel: 'Cancel...',
 	modalPreloaderTitle: 'One moment please...',
 	scrollTopOnStatusbarClick: true,
@@ -21,7 +21,7 @@ var mySwiper = myApp.swiper('.swiper-container', {
 var $$ = Dom7;
 
 var B = {
-	about:'B.i.Z is a product of Kontakt Mondo inc. and all related subdiaries . Reserved brand blblbl.<p> KontaktMondo is an incorporation under Canada law bbllblba on May xx 2019. </p> <p>Current version in used: 0.7.0 (2019-06)',
+	about:'B.&iuml;.Z is a product of Kontakt Mondo inc. and all related subdiaries . Reserved brand blblbl.<p> KontaktMondo is an incorporation under Canada law bbllblba on May xx 2019. </p> <p>Current version in used: 0.7.1 (2019-06)',
 	server:'https://virtualbizcards.com:3333/',
 	options: {
 		ocr_match: true,
@@ -1425,7 +1425,7 @@ function geoLocation(func) {
 		clearTimeout(B.timout);
 		myApp.modal({
 	   	title: 'GeoLocation is not permitted on your device', 
-	   	text: 'You have to activate GeoLocation in your app parameters for Bizswiper card exchange to work.1', 
+	   	text: 'You have to activate GeoLocation in your app parameters for B.&iuml;.Z card exchange to work.1', 
 	   	buttons: [
 				{ text: "Ok", onClick: function () {} }
 			]
@@ -1433,16 +1433,16 @@ function geoLocation(func) {
 		return false;
 	}
 
-	function success(o) {
+	function onSuccess(o) {
 		func(o.coords);
 	};
 
-	function error(err) {
+	function onError(err) {
 		myApp.hidePreloader();
 		clearTimeout(B.timout);
 		myApp.modal({
 	   	title: 'GeoLocation is not permitted on your device', 
-	   	text: err.PositionError.code+' You have to activate GeoLocation in your app parameters for Bizswiper card exchange to work.', 
+	   	text: err.PositionError.code+' You have to activate GeoLocation in your app parameters for B.&iuml;.Z card exchange to work.', 
 	   	buttons: [
 				{ text: "Ok", onClick: function () {} }
 			]
@@ -1454,7 +1454,7 @@ function geoLocation(func) {
 	  maximumAge: 0
 	};
 	
-	navigator.geolocation.getCurrentPosition(success, error, options);
+	navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
 	//success({lat:45.6105491,lng:-73.5094794,alt:0}); // manual override for testing...
 }
 
@@ -1575,7 +1575,7 @@ $$(".card-back-camera-open").on("click", function(){
 
 $$(".card-other-camera-open").on("click", function(){
 	B.card_side = 'other';
-	camera_open(false);
+	galleryPhoto();
 });
 
 $$('.popup-crop').on('popup:open', function () {
