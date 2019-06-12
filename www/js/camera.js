@@ -178,7 +178,7 @@
 
 	function capturePhoto() {
 	    if (typeof Camera === "undefined") {
-			myApp.alert("No camera available");
+			myApp.alert("The camera is not available");
 	    }
 	    else {
 	    	var options = setOptions(Camera.PictureSourceType.CAMERA);
@@ -187,6 +187,25 @@
 			    
 				 B.fromfile = false;
 			    $$("#savePhoto, #processPhoto").parent().removeClass("hidden");
+			}, onFail, options);
+	    }
+	}
+	
+	function galleryPhoto() {
+	    if (typeof Camera === "undefined") {
+			myApp.alert("Photo library is not available");
+	    }
+	    else {
+	    	var options = setOptions(Camera.PictureSourceType.PHOTOLIBRARY);
+	    	navigator.camera.getPicture( function(imageUri) {
+	    		B.croper.destroy();
+				var options = { 
+					url:imgUri, 
+					enableOrientation:true,
+        			boundary: B.crop_opts.boundary 
+        		};
+				B.croper = new Croppie(document.getElementById('crop-box'), options);
+       	 	return false;
 			}, onFail, options);
 	    }
 	}
