@@ -1341,7 +1341,7 @@ function croper_record() {
 	
 	var opts = { "type":"base64", "size":"viewport", "format":"png", "quality":1, "circle":false };
 	B.croper.result(opts).then(function(dataUrl){
-		var cid = $$(B.container).data("id");
+		var cid = B.cardid;
 		var own = B.cards.mycard.id;
 		var fid = ($$('#img_output').val()==0 ? $$('#img_input').val() : $$('#img_output').val())
 		
@@ -1614,7 +1614,7 @@ $$('#img_input').on("change", function() {
 	console.log('Crop input change');
 	
 	var found = false;
-	var cid = $$(B.container).data("id");
+	var cid = B.cardid;
 	var fid = $$(this).val();
 	for (var i=0; i<B.cards_fields.length; i++) {
 		var f = B.cards_fields[i];
