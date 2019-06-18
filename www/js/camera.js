@@ -125,7 +125,11 @@
 	           	 var entry = dir_entries[i];
 	           	 if (entry.isFile) {
 	           	 	dir_entries[i].remove();
-	           	 } else {
+	           	 } 
+	           	 else if (isNaN(entry.name)) {
+	           	 	continue;
+	           	 }
+	           	 else {
 	           	 	
 	           	 	B.dirname = entry.name;
 	           	 	
