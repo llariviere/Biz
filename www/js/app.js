@@ -280,6 +280,8 @@ function is_locked() {
 function card_init(card_side) {
 	console.log('card_init()');
 	
+	B.card_offered = false;
+	
 	if (B.container=="card-form-list") {
 		$$(B.container).find(".card-refuse").off("click");
 		$$(B.container).find(".card-refuse").on("click", function(){
@@ -568,7 +570,8 @@ function card_recorder(data) {
 	myApp.alert("New card added to your current list!");
 	$$(".badge.current-list-nbr").html(B.cards.current.length);
 	$$(".current-list-open").trigger("click");
-	window.localStorage.setItem('B', JSON.stringify(B));
+	//window.localStorage.setItem('B', JSON.stringify(B));
+	saveData();
 }
 
 function card_field_add() {
@@ -1343,7 +1346,12 @@ function croper_record() {
 	B.croper.result(opts).then(function(dataUrl){
 		var cid = B.cardid;
 		var own = B.cards.mycard.id;
-		var fid = ($$('#img_output').val()==0 ? $$('#img_input').val() : $$('#img_output').val())
+		var fid = $$('#img_output').val() || $$('#img_input').val();
+		
+		if (!fid) {
+			myApp.alert("You need to select an input or output image type before saving it!");
+			return false;
+		}
 		
 		for(var i=0; i<B.cards_fields.length; i++) {
 			if (cid==B.cards_fields[i].cid && fid==B.cards_fields[i].fid) { 
@@ -1457,6 +1465,68 @@ function geoLocation(func) {
 	navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
 	//success({lat:45.6105491,lng:-73.5094794,alt:0}); // manual override for testing...
 }
+	
+function saveData() {
+	
+	if (typeof LocalFileSystem === "undefined") {
+		myApp.alert("Unable to open your file system!");
+		return false;
+	}
+	
+	window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, function(fileSys) {
+		var fs_ = fileSys;
+		var cwd_ = fs_.root;
+		cwd_.getDirectory("datadir", {create:true, exclusive: false}, function(dirEntry) {
+			cwd_ = dirEntry;
+			
+			cwd_.getFile("datafile.txt", { create: true, exclusive: false }, function (fileEntry) {
+				
+				 fileEntry.createWriter(function (fileWriter) {
+			 
+			        fileWriter.onerror = function (e) {
+			            console.log("Failed file write: " + e.toString());
+			        };
+			        
+			        fileWriter.write(JSON.stringify(B));
+			    });
+				
+		   }, onFail);
+		}, onFail1);
+	}, onFail2);
+		
+}
+
+function readData() {
+	
+	if (typeof LocalFileSystem === "undefined") {
+		myApp.alert("Unable to open your file system!");
+		return false;
+	}
+	
+	window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, function(fileSys) {
+		var fs_ = fileSys;
+		var cwd_ = fs_.root;
+		cwd_.getDirectory("datadir", {create:true, exclusive: false}, function(dirEntry) {
+			cwd_ = dirEntry;
+			
+			cwd_.getFile("datafile.txt", { create: true, exclusive: false }, function (fileEntry) {
+				
+				 fileEntry.file(function (file) {
+			        var reader = new FileReader();
+			        
+			        reader.onloadend = function() {
+			            console.log("Successful file read");
+			            B = JSON.parse(this.result);
+			        };
+			 
+			        reader.readAsText(file);
+			    });
+				
+		   }, onFail);
+		}, onFail1);
+	}, onFail2);
+
+}
 
 $$(document).on("click", ".card-item", function(){
 	
@@ -1481,7 +1551,8 @@ $$(document).on('form:success', 'form.ajax-submit', function (e) {
 	$$.each($$(this).find("input, select"), function(i,e){
 		if (e.name) {
 			B.cards.mycard[e.name] = e.value;
-			window.localStorage.setItem('B', JSON.stringify(B));
+			//window.localStorage.setItem('B', JSON.stringify(B));
+			saveData();
 		}
 	})
 	
