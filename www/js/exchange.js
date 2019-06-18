@@ -122,7 +122,7 @@ socket.on('card login', function (data) {
 						B.index = false;
 						B.cardid = data.id;
 						card_populate();
-						break;	
+						return;	
 					}
 				}
 
