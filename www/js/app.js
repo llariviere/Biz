@@ -1496,7 +1496,7 @@ function saveData() {
 		
 }
 
-function readData() {
+function readData(onSuccess) {
 	
 	if (typeof LocalFileSystem === "undefined") {
 		myApp.alert("Unable to open your file system!");
@@ -1517,6 +1517,7 @@ function readData() {
 			        reader.onloadend = function() {
 			            console.log("Successful file read");
 			            B = JSON.parse(this.result);
+			            onSuccess();
 			        };
 			 
 			        reader.readAsText(file);
