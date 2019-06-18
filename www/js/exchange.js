@@ -104,31 +104,32 @@ socket.on('card login', function (data) {
 		case "card logged in":
 		   myApp.closeModal(".login-screen.modal-in");
 			//var local_B = window.localStorage.getItem('_B');
-			readData();
-			if (B) {
-				//B = JSON.parse(local_B);
-				var nb_cards = 0;
-				if (B.cards.current) {
-					$$(".badge.current-list-nbr").html(B.cards.current.length);
-					nb_cards += B.cards.current.length;
+			readData(function () {
+				if (B) {
+					//B = JSON.parse(local_B);
+					var nb_cards = 0;
+					if (B.cards.current) {
+						$$(".badge.current-list-nbr").html(B.cards.current.length);
+						nb_cards += B.cards.current.length;
+					}
+					if (B.cards.waiting) {
+						$$(".badge.waiting-list-nbr").html(B.cards.waiting.length);
+						nb_cards += B.cards.waiting.length;
+					}
+					
+					if (data.nb_links == nb_cards) {
+						B.list = "mycard";
+						B.index = false;
+						B.cardid = data.id;
+						card_populate();
+						break;	
+					}
 				}
-				if (B.cards.waiting) {
-					$$(".badge.waiting-list-nbr").html(B.cards.waiting.length);
-					nb_cards += B.cards.waiting.length;
-				}
-				
-				if (data.nb_links == nb_cards) {
-					B.list = "mycard";
-					B.index = false;
-					B.cardid = data.id;
-					card_populate();
-					break;	
-				}
-			}
 
-			socket.emit('card load2', data.id);
-		   myApp.alert('Synchronizing your data...<br>Please wait.');
-		   geoPermission();
+				socket.emit('card load2', data.id);
+			   myApp.alert('Synchronizing your data...<br>Please wait.');
+			   geoPermission();
+			});
 			break;
 		case "card set uuid":
 			window.localStorage.setItem('uuid',data.uuid);
