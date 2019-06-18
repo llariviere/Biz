@@ -103,34 +103,9 @@ socket.on('card login', function (data) {
 			break;
 		case "card logged in":
 		   myApp.closeModal(".login-screen.modal-in");
-			//var local_B = window.localStorage.getItem('_B');
-			readData(function () {
-				/*
-				if (B.cards) {
-					//B = JSON.parse(local_B);
-					var nb_cards = 0;
-					if (B.cards.current) {
-						$$(".badge.current-list-nbr").html(B.cards.current.length);
-						nb_cards += B.cards.current.length;
-					}
-					if (B.cards.waiting) {
-						$$(".badge.waiting-list-nbr").html(B.cards.waiting.length);
-						nb_cards += B.cards.waiting.length;
-					}
-					
-					if (data.nb_links == nb_cards) {
-						B.list = "mycard";
-						B.index = false;
-						B.cardid = data.id;
-						card_populate();
-						return;	
-					}
-				}
-				*/
-				socket.emit('card load2', data.id);
-			   myApp.alert('Synchronizing your data...<br>Please wait.');
-			   geoPermission();
-			});
+			socket.emit('card load2', data.id);
+		   myApp.alert('Synchronizing your data...<br>Please wait.');
+		   geoPermission();
 			break;
 		case "card set uuid":
 			window.localStorage.setItem('uuid',data.uuid);
@@ -498,7 +473,14 @@ function card_login(email) {
 var storedData = myApp.formGetData('login_form');
 
 if (storedData) {
-	card_login(storedData.email);
+	if ($connected) {
+		card_login(storedData.email);
+	} 
+	else {
+		B.list = "mycard";
+		B.index = false;
+		card_populate();
+	}
 } else {
 	//welcomescreen.open();
 	$$("#email").focus();
