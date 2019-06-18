@@ -105,7 +105,8 @@ socket.on('card login', function (data) {
 		   myApp.closeModal(".login-screen.modal-in");
 			//var local_B = window.localStorage.getItem('_B');
 			readData(function () {
-				if (B) {
+				/*
+				if (B.cards) {
 					//B = JSON.parse(local_B);
 					var nb_cards = 0;
 					if (B.cards.current) {
@@ -125,7 +126,7 @@ socket.on('card login', function (data) {
 						return;	
 					}
 				}
-
+				*/
 				socket.emit('card load2', data.id);
 			   myApp.alert('Synchronizing your data...<br>Please wait.');
 			   geoPermission();
