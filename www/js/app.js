@@ -1,4 +1,4 @@
-/* B.i.Z specific /var/www/html/card/js/app.js */
+/* B.ï.Z specific /var/www/html/card/js/app.js */
 
  var myApp = new Framework7({
 	precompileTemplates: true,
