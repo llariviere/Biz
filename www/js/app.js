@@ -1516,7 +1516,7 @@ function readData(onSuccess) {
 			        
 			        reader.onloadend = function() {
 			            console.log("Successful file read");
-			            B = JSON.parse(this.result);
+			            if (this.result) B = JSON.parse(this.result);
 			            onSuccess();
 			        };
 			 
