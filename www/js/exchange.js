@@ -472,6 +472,7 @@ function card_login(email) {
 
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
+	var storedData = myApp.formGetData('login_form');
 	if (storedData) {
 		if ($connected) {
 			card_login(storedData.email);
