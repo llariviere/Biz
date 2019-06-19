@@ -483,6 +483,7 @@ if (storedData) {
 			B.index = false;
 			card_populate();
 		});
+	}
 } else {
 	//welcomescreen.open();
 	$$("#email").focus();
