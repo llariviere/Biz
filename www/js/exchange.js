@@ -470,8 +470,6 @@ function card_login(email) {
 
 }
 
-var storedData = myApp.formGetData('login_form');
-
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
 	if (storedData) {
@@ -482,15 +480,12 @@ function onDeviceReady() {
 			myApp.formStoreData('login_form', {
 				"email":email
 		   });
-			
-			/*
 			readData(function(){
 				myApp.closeModal(".login-screen.modal-in");
 				B.list = "mycard";
 				B.index = false;
 				card_populate();
 			});
-			*/
 		}
 	} else {
 		$$("#email").focus();
