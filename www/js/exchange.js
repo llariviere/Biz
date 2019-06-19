@@ -469,22 +469,23 @@ function card_login(email) {
 	socket.emit('card login2', login_data);
 
 }
-	
-var storedData = myApp.formGetData('login_form');
 
-if (storedData) {
-	if ($connected) {
-		card_login(storedData.email);
-	} 
-	else {
-		readData(function(){
-			myApp.closeModal(".login-screen.modal-in");
-			B.list = "mycard";
-			B.index = false;
-			card_populate();
-		});
+(function() {
+	var storedData = myApp.formGetData('login_form');
+	
+	if (storedData) {
+		if ($connected) {
+			card_login(storedData.email);
+		} 
+		else {
+			readData(function(){
+				myApp.closeModal(".login-screen.modal-in");
+				B.list = "mycard";
+				B.index = false;
+				card_populate();
+			});
+		}
+	} else {
+		$$("#email").focus();
 	}
-} else {
-	//welcomescreen.open();
-	$$("#email").focus();
-}
+})();
