@@ -7,6 +7,11 @@ var cancelModal = '';
 function card_offer(context,id) {
 	console.log('card_offer('+context+','+id+')');
 	
+	if (!$connected) {
+		myApp.alert("Unable to offer this card.<br>Your device seem to be offline.");
+		return;
+	}
+	
 	$$("#"+context+" .thumb").show();
 	//$$('#'+context).css({ 'top': $$('#'+context).data('top') })
 	$$('#'+context).css({ 'top': B.t })
