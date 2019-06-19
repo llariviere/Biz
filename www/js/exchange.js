@@ -470,9 +470,10 @@ function card_login(email) {
 
 }
 
-(function() {
-	var storedData = myApp.formGetData('login_form');
-	
+var storedData = myApp.formGetData('login_form');
+
+document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady() {
 	if (storedData) {
 		if ($connected) {
 			card_login(storedData.email);
@@ -480,7 +481,7 @@ function card_login(email) {
 		else {
 			myApp.formStoreData('login_form', {
 				"email":email
-		   	});
+		   });
 			
 			/*
 			readData(function(){
@@ -494,4 +495,4 @@ function card_login(email) {
 	} else {
 		$$("#email").focus();
 	}
-})();
+}
