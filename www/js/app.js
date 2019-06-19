@@ -1087,19 +1087,19 @@ function card_initial_setup() {
 
 function card_points_img(card) {
 	var $data = {};
-	if (card.points>1000000) {
+	if (card.points>=1000000) {
 		$data['points_img'] = 'Diamond';
 		$data['points_target'] = points;
 		$data['points_color'] = "#caf1f7";
-	} else if(card.points>500000) {
+	} else if(card.points>=500000) {
 		$data['points_img'] = 'Gold';
 		$data['points_target'] = 1000000;
 		$data['points_color'] = "#ffeb56";
-	} else if(card.points>100000) {
+	} else if(card.points>=100000) {
 		$data['points_img'] = 'Silver';
 		$data['points_target'] = 500000;
 		$data['points_color'] = "#ccd1f9";
-	} else if(card.payed_date) {
+	} else if(card.payed_date>0) {
 		$data['points_img'] = 'Bronze';
 		$data['points_target'] = 100000;
 		$data['points_color'] = "Bronze";
@@ -1257,8 +1257,13 @@ function card_sms_test_code() {
 
 function card_reload() {
 	console.log('card_reload()');
-	myApp.alert('Synchronizing your data...<br>Please wait.');
-	socket.emit('card load2', B.cards.mycard.id);
+	if ($connected) {
+		myApp.alert('Synchronizing your data...<br>Please wait.');
+		socket.emit('card load2', B.cards.mycard.id);
+	}
+	else {
+		myApp.alert('Unable to reach the server.<br>Your device seem to be offline.');
+	}
 }
 
 // section ranking...
