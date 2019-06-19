@@ -477,6 +477,7 @@ if (storedData) {
 		card_login(storedData.email);
 	} 
 	else {
+		myApp.closeModal(".login-screen.modal-in");
 		B.list = "mycard";
 		B.index = false;
 		card_populate();
