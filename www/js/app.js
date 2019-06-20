@@ -508,7 +508,7 @@ function card_record() {
 					"v":valeur
 				});
 			}
-			window.localStorage.setItem("B", JSON.stringify(B));
+			saveData();
 		}
 		
 	});
@@ -570,7 +570,7 @@ function card_recorder(data) {
 	myApp.alert("New card added to your current list!");
 	$$(".badge.current-list-nbr").html(B.cards.current.length);
 	$$(".current-list-open").trigger("click");
-	//window.localStorage.setItem('B', JSON.stringify(B));
+	
 	saveData();
 }
 
@@ -1571,13 +1571,12 @@ $$(document).on('form:success', 'form.ajax-submit', function (e) {
 	$$.each($$(this).find("input, select"), function(i,e){
 		if (e.name) {
 			B.cards.mycard[e.name] = e.value;
-			//window.localStorage.setItem('B', JSON.stringify(B));
+			
 			saveData();
 		}
 	})
 	
 	card_populate("mycard",B.cards.mycard);
-	//card_populate("thecard",B.cards.mycard);
 	
 });
 
