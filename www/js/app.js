@@ -1351,7 +1351,7 @@ function croper_record() {
 	B.croper.result(opts).then(function(dataUrl){
 		var cid = B.cardid;
 		var own = B.cards.mycard.id;
-		var fid = $$('#img_output').val() || $$('#img_input').val();
+		var fid = parseInt($$('#img_output').val()) || parseInt($$('#img_input').val());
 		
 		if (!fid) {
 			myApp.alert("You need to select an input or output image type before saving it!");
@@ -1706,7 +1706,6 @@ $$('#img_input').on("change", function() {
 	else {
 		B.croper.destroy();
 		if (found.v.substr(0,4)!='data') found.v = 'data:image/jpeg;base64,'+found.v;
-		
 		var options = { url:found.v, enableOrientation:true,
         boundary: B.crop_opts.boundary };
 		
