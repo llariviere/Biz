@@ -1692,7 +1692,7 @@ $$('#img_input').on("change", function() {
 	
 	var found = false;
 	var cid = B.cardid;
-	var fid = $$(this).val();
+	var fid = parseInt($$(this).val());
 	for (var i=0; i<B.cards_fields.length; i++) {
 		var f = B.cards_fields[i];
 		if (f.cid==cid && f.fid==fid) {
