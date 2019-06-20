@@ -1705,6 +1705,7 @@ $$('#img_input').on("change", function() {
 	}
 	else {
 		B.croper.destroy();
+		if (found.v.substr(0,4)!='data') found.v = 'data:image/jpeg;base64,'+found.v;
 		
 		var options = { url:found.v, enableOrientation:true,
         boundary: B.crop_opts.boundary };
