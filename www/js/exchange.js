@@ -113,7 +113,7 @@ socket.on('card login', function (data) {
 		   geoPermission();
 			break;
 		case "card set uuid":
-			window.localStorage.setItem('uuid',data.uuid);
+			window.localStorage.setItem('uuid',data.uuid);			
 			break;
 	}
 	
@@ -146,7 +146,6 @@ socket.on('card load', function (data) {
 		}
 	}
 	
-	//window.localStorage.setItem('_B', JSON.stringify(B));
 	saveData()	
 	
 	if (B.cards.current) $$(".badge.current-list-nbr").html(B.cards.current.length);
@@ -257,7 +256,7 @@ socket.on('card add', function(data){
 		B.cards.current.push(data.card);
 		$$(".badge.current-list-nbr").html(B.cards.current.length);
 	}
-	//window.localStorage.setItem('B', JSON.stringify(B));
+	
 	saveData();
 	mainView.router.load({pageName: 'index'});
 });
@@ -277,7 +276,7 @@ socket.on('card details', function(data){
 		B.cards.current.push(data.card);
 		$$(".badge.current-list-nbr").html(B.cards.current.length);
 	}
-	//window.localStorage.setItem('B', JSON.stringify(B));
+	
 	saveData();
 });
 socket.on('card accepted', function(data){
@@ -295,7 +294,7 @@ socket.on('card accepted', function(data){
 		$$(".current-list-open").trigger("click");
 		myApp.alert("Card accepted and transfered to your current card list!");
 	}
-	//window.localStorage.setItem('B', JSON.stringify(B));
+	
 	saveData();
 });
 socket.on('card refused', function(data){
@@ -310,7 +309,7 @@ socket.on('card refused', function(data){
 		if (B.cards.waiting) $$(".badge.waiting-list-nbr").html(B.cards.waiting.length);
 		$$(".waiting-list-open").trigger("click");
 		myApp.alert("Card deleted from your waiting card list!");
-		//window.localStorage.setItem('B', JSON.stringify(B));
+		
 		saveData();
 	}
 });
@@ -326,16 +325,14 @@ socket.on('card deleted', function(data){
 		$$(".current-list-open").trigger("click");
 		if (B.cards.current) $$(".badge.current-list-nbr").html(B.cards.current.length);
 		myApp.alert("Card deleted from your current card list!");
-		//window.localStorage.setItem('B', JSON.stringify(B))
+		
 		saveData();
 	}
 });
 socket.on('card qr', function(data){
 
 	if (data.image) {
-  	 //if (storageAvailable()) localStorage.setItem('card_qr', data.buffer);
-    //qr_src = 'data:image/png;base64,' + data.buffer;
-    //$$("#qr_img").attr("src", qr_src);
+		
 		myApp.alert('<div class="picker-modal-inner"><div class="content-block" style="text-align: center;width:100%;"><img src="data:image/png;base64,'+data.buffer+'" align="middle" style="width:150px;" /></div></div>');
   
 	}
@@ -348,7 +345,7 @@ socket.on('custom field', function(data){
   	myApp.alert(data.msg);
 			
   	B.fields.push({"id":data.id,"en":data.field,"fr":data.field,"base":0,"order":255});
-  	//window.localStorage.setItem('B', JSON.stringify(B));
+  	
   	saveData();
   	
 	var li = $$(B.container).find("li.ii_"+data.ii);
@@ -368,7 +365,7 @@ socket.on('card cc charge', function(data){
 	$$.each(B.cards.current, function(i,c){
 		if (c.id==data.id) {
 			B.cards.current[i].payed_date=Date().toString();
-			//window.localStorage.setItem('B', JSON.stringify(B));
+			
 			saveData();
 		}
 	});
