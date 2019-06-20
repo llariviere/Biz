@@ -1376,6 +1376,9 @@ function croper_record() {
 			};
 		}
 		
+		// et on enregistre le changement sur disque localement...
+		saveData();
+		
 		if (cid==own) {
 			$$("#mycard").find("div.img").css({"background-image":"url("+dataUrl+")"});
 			
