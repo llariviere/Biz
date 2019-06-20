@@ -1349,7 +1349,7 @@ function croper_record() {
 	
 	var opts = { "type":"base64", "size":"viewport", "format":"png", "quality":1, "circle":false };
 	B.croper.result(opts).then(function(dataUrl){
-		var updated = false:
+		var updated = false;
 		var cid = B.cardid;
 		var own = B.cards.mycard.id;
 		var fid = parseInt($$('#img_output').val()) || parseInt($$('#img_input').val());
