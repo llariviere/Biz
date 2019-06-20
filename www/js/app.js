@@ -1349,6 +1349,7 @@ function croper_record() {
 	
 	var opts = { "type":"base64", "size":"viewport", "format":"png", "quality":1, "circle":false };
 	B.croper.result(opts).then(function(dataUrl){
+		var updated = false:
 		var cid = B.cardid;
 		var own = B.cards.mycard.id;
 		var fid = parseInt($$('#img_output').val()) || parseInt($$('#img_input').val());
@@ -1361,8 +1362,18 @@ function croper_record() {
 		for(var i=0; i<B.cards_fields.length; i++) {
 			if (cid==B.cards_fields[i].cid && fid==B.cards_fields[i].fid) { 
 				B.cards_fields[i].v = dataUrl;
+				update = true;
 				break;
 			}
+		}
+		
+		if (!updated) {
+			B.cards_fields[B.cards_fields.length] = {
+				v:dataUrl,
+				cid:cid,
+				fid:fid,
+				own:own
+			};
 		}
 		
 		if (cid==own) {
