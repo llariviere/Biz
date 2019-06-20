@@ -452,7 +452,7 @@ function card_login(email) {
 	
 	// validation des champs de login...
 	var regexp = /^[a-z0-9](\.?[a-z0-9_-]){0,}@[a-z0-9-]+\.([a-z]{1,6}\.)?[a-z]{2,6}$/gi;
-	if (!email.match(regexp)) {
+	if (!String(email).match(regexp)) {
 		myApp.alert("Your email address doesn't respect the standards. Please correct it and try again.")																																																																																																																																																																																																																																																																																																																																																				
 		myApp.loginScreen();
 		$$("#email").val('');
