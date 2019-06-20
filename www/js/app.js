@@ -531,7 +531,9 @@ function card_record() {
 	}
 		
 	// Send to sender...
-	console.log(pars)
+	console.log("Data size:"+JSON.stringify(pars).length)
+	
+	return false
 	socket.emit('card record', pars);
 	
 	// For existing card update we refresh the card template...
@@ -540,7 +542,6 @@ function card_record() {
 			B.list 	= "mycard";
 			B.index 	= false;
 			B,cardid = pars.id;
-			card_populate();
 			/*
 			if (typeof shake !== 'undefined') {
 				shake.stopWatch();
@@ -548,9 +549,7 @@ function card_record() {
 			}
 			*/
 		}
-		else {
-			card_populate();
-		}
+		card_populate();
 	}
 }
 
