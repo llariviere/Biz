@@ -474,7 +474,8 @@ function card_record() {
 		if (phone) valeur = valeur.replace(/[^0-9]/g, '');
 		
 		// Add to the parameters sent to server...
-		pars[champ] = valeur;
+		if (champ==33) pars[champ] = valeur.replace(/\s/g,'');
+		else pars[champ] = valeur;
 		
 		// Delete non-mandatory field without value...
 		if (valeur=='' && pars.id==B.cards.mycard.id) {
@@ -530,11 +531,10 @@ function card_record() {
 		pars[45] = B.dataUrl.back;
 	}
 		
-	// Send to sender...
-	console.log("Data size:"+JSON.stringify(pars).length)
-	
-	return false
+	// Send to server...
 	socket.emit('card record', pars);
+	
+	console.log("Data size:"+JSON.stringify(pars).length);
 	
 	// For existing card update we refresh the card template...
 	if (B.container!='#add_card_list') {
