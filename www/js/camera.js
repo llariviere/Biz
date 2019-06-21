@@ -242,7 +242,7 @@
 		myApp.showPreloader('Loading...');
 		setTimeout(function () {
 	   	myApp.hidePreloader();
-		}, 8000);
+		}, 20000);
 		
 		function getDataUri(url, callback) {
 			var image = new Image();
