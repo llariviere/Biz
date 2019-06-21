@@ -369,8 +369,8 @@ function card_init(card_side) {
 
 function card_ocr_ok() {
 	console.log(B.input_name+' '+$$("#card_ocr_input").val());
-	if (B.input_name==33) $$("#card_ocr_input").val($$("#card_ocr_input").val().replace(/[\s]/g,''));
-	$$(B.container+" input[name='"+B.input_name+"']").val($$("#card_ocr_input").val());
+	if (B.input_name==33) $$(B.container+" input[name='"+B.input_name+"']").val($$("#card_ocr_input").val().replace(/\s/g,''));
+	else $$(B.container+" input[name='"+B.input_name+"']").val($$("#card_ocr_input").val());
 }
 
 function card_input_modal() {
@@ -474,8 +474,7 @@ function card_record() {
 		if (phone) valeur = valeur.replace(/[^0-9]/g, '');
 		
 		// Add to the parameters sent to server...
-		if (champ==33) pars[champ] = valeur.replace(/\s/g,'');
-		else pars[champ] = valeur;
+		pars[champ] = valeur;
 		
 		// Delete non-mandatory field without value...
 		if (valeur=='' && pars.id==B.cards.mycard.id) {
