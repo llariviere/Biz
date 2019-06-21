@@ -248,7 +248,7 @@
 			var image = new Image();
 			
 			image.onload = function () {
-				console.log(this);
+				
 				var canvas = document.createElement('canvas');
 				canvas.width = this.naturalWidth; // or 'width' if you want a special/scaled size
 				canvas.height = this.naturalHeight; // or 'height' if you want a special/scaled size
@@ -269,6 +269,7 @@
 			getDataUri($$('#card-photo-front').attr("src"), function(dataUrl){
 				B.dataUrl.front = dataUrl;
 				socket.emit('card ocr', {photo: dataUrl, cardid: mycard.id, card_side: "front"});
+				console.log("Front : "+B.dataUrl.front.length);
 				if ($$('#card-photo-back').attr("src")) {
 					getDataUri($$('#card-photo-back').attr("src"), function(dataUrl){
 						B.dataUrl.back = dataUrl;
@@ -281,12 +282,14 @@
 			getDataUri($$('#card-photo-back').attr("src"), function(dataUrl){
 				B.dataUrl.back = dataUrl;
 				socket.emit('card ocr', {photo: dataUrl, cardid: mycard.id, card_side: "front"});
+				console.log("back : "+B.dataUrl.back.length);
 			});
 			card_ocr_init();
 		}
 	}
 	
 	function card_ocr_init() {
+		console.log("card_ocr_init()");
 		B.container="#add_card_list";
 		B.list = "current";
 		B.index = false;
@@ -299,7 +302,7 @@
 	}
 	
 	socket.on('card ocr', function(data) {
-		console.log('card_ocr_process()');
+		console.log('on card_ocr_process()');
 		
 		// Using text detection result from vision, we add a formatted list of fields...
 		var ocrLines = data.description.split("\n");
