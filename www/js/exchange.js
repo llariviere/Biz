@@ -403,7 +403,7 @@ socket.on('cards list', function(data){
  			
 		$$.each(data, function(i,card){
 			
-			if (card.card == B.card_offered || card.card == B.cards.mycard.id) return true;
+			if (card.card == B.card_offered || card.owner == B.cards.mycard.id) return true;
 			
 			var fullname = (card.firstname || card.lastname ? card.firstname+' '+card.lastname : card.email);
 			var linked = (card.accepted ? "fa-id-card-o" : (card.added ? "fa-id-card" : "fa-check-square-o"));
