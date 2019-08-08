@@ -73,7 +73,6 @@
     <plugin name="cordova-plugin-shake" spec="~0.6.0" />
     <plugin name="cordova-plugin-phone-call" spec="~1.0.7" />
     <plugin name="cordova-plugin-file" source="npm" spec="~4.3.3" />
-</widget>
 
     <edit-config target="NSCameraUsageDescription" file="*-Info.plist" mode="merge">
         <string>We are using the Camera for capturing the text cards they contain</string>
@@ -84,3 +83,4 @@
     <edit-config target="NSLocationAlwaysUsageDescription" file="*-Info.plist" mode="merge">
         <string>We are using the Locaion to enable direct exchange of card</string>
     </edit-config>
+</widget>
