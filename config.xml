@@ -57,19 +57,8 @@
         <!-- Spotlight Icon -->
         <icon src="res/ios/icon-40.png" platform="ios" width="40" height="40" />
         <icon src="res/ios/icon-40@2x.png" platform="ios" width="80" height="80" />
-        <icon src="res/ios/icon-40@3x.png" platform="ios" width="120" height="120" />
-        
-        
+        <icon src="res/ios/icon-40@3x.png" platform="ios" width="120" height="120" />        
     </platform>
-    <edit-config target="NSCameraUsageDescription" file="*-Info.plist" mode="merge">
-        <string>We are using the Camera for capturing the text cards they contain</string>
-    </edit-config>
-    <edit-config target="NSLocationWhenInUseUsageDescription" file="*-Info.plist" mode="merge">
-        <string>We are using the Locaion to enable direct exchange of card</string>
-    </edit-config>
-    <edit-config target="NSLocationAlwaysUsageDescription" file="*-Info.plist" mode="merge">
-        <string>We are using the Locaion to enable direct exchange of card</string>
-    </edit-config>
     <preference name="DisallowOverscroll" value="true" />
     <preference name="Orientation" value="portrait" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
@@ -85,3 +74,13 @@
     <plugin name="cordova-plugin-phone-call" spec="~1.0.7" />
     <plugin name="cordova-plugin-file" source="npm" spec="~4.3.3" />
 </widget>
+
+    <edit-config target="NSCameraUsageDescription" file="*-Info.plist" mode="merge">
+        <string>We are using the Camera for capturing the text cards they contain</string>
+    </edit-config>
+    <edit-config target="NSLocationWhenInUseUsageDescription" file="*-Info.plist" mode="merge">
+        <string>We are using the Locaion to enable direct exchange of card</string>
+    </edit-config>
+    <edit-config target="NSLocationAlwaysUsageDescription" file="*-Info.plist" mode="merge">
+        <string>We are using the Locaion to enable direct exchange of card</string>
+    </edit-config>
