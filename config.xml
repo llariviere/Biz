@@ -10,9 +10,7 @@
     <content src="index.html" />
     <access origin="https://vision.googleapis.com" />
     <access origin="https://*.http://virtualbizcards.com" />
-    <access origin="https://*.stripe.com" />
     <allow-navigation href="https://*.virtualbizcards.com/*" />
-    <allow-navigation href="https://*.stripe.com/*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
