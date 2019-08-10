@@ -81,8 +81,4 @@
     <edit-config target="NSLocationAlwaysUsageDescription" file="*-Info.plist" mode="merge">
         <string>We are using the Locaion to enable direct exchange of card</string>
     </edit-config>
-    
-    <config-file platform="android" parent="/manifest">
-        <uses-sdk tools:overrideLibrary="org.apache.cordova,com.library.plugin" />
-    </config-file>
 </widget>
