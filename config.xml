@@ -24,7 +24,7 @@
         <preference name="android-minSdkVersion" value="27" />
         <preference name="AndroidPersistentFileLocation" value="Compatibility" />
         <allow-intent href="market:*" />
-              <!-- Portrait -->
+        <!-- Portrait -->
         <splash src="res/android/splash-portrait-ldpi.png" platform="android" density="port-ldpi" width="320" height="426" />
         <splash src="res/android/splash-portrait-mdpi.png" platform="android" density="port-mdpi" width="320" height="470" />
         <splash src="res/android/splash-portrait-hdpi.png" platform="android" density="port-hdpi" width="480" height="640" />
@@ -81,4 +81,8 @@
     <edit-config target="NSLocationAlwaysUsageDescription" file="*-Info.plist" mode="merge">
         <string>We are using the Locaion to enable direct exchange of card</string>
     </edit-config>
+    
+    <config-file platform="android" parent="/manifest">
+        <uses-sdk tools:overrideLibrary="org.apache.cordova,com.library.plugin" />
+    </config-file>
 </widget>
