@@ -1,5 +1,6 @@
 /* 
-* camera, image and ocr functions...
+* /var/www/html/card/js/camera.js
+* B.ï.Z camera, image and ocr functions...
 */
 
 	B.fs_ = null;
@@ -8,7 +9,7 @@
 	$$(".button.card-side").on("click", function(){
 		$$(".button.card-side").removeClass("selected");
 		$$(this).addClass("selected");
-		B.card_side = ($$(this).hasClass("front") ? 'front' : 'back');
+		B.card_side = ($$(this).hasClass("front") ? lsval('js front') : lsval('js back'));
 		$$("span.card-side").text(B.card_side);
 		$$("#card-photo > img").addClass("hidden");
 		$$("#card-photo > img."+B.card_side).removeClass("hidden");
@@ -98,8 +99,8 @@
 		<div class="navbar">\
       <div class="navbar-inner">\
         <div class="left"></div>\
-        <div class="title">List of saved card photos</div>\
-        <div class="right"><a href="#" class="link close-popup">Close</a></div>\
+        <div class="title">'+lsval('js saved photos')+'</div>\
+        <div class="right"><a href="#" class="link close-popup">'+lsval('close')+'</a></div>\
       </div>\
     </div>\
 	<div class="list-block media-list">\
@@ -108,7 +109,7 @@
 </div>');
 
 		if (typeof LocalFileSystem === "undefined") {
-			myApp.alert("Unable to open your file system!");
+			myApp.alert(lsval("js no file system"));
 			return false;
 		}
 
@@ -163,7 +164,7 @@
 								      </div>\
 								  </a>\
 							     <div class="swipeout-actions-left">\
-						          <a href="#" onClick="delPhoto(\''+dirEntry.name+'\');event.stopPropagation();" class="delete  bg-red">Delete</a>\
+						          <a href="#" onClick="delPhoto(\''+dirEntry.name+'\');event.stopPropagation();" class="delete  bg-red">'+lsval('Delete')+'</a>\
 						        </div>\
 							   </li>')
 	
@@ -182,7 +183,7 @@
 
 	function capturePhoto() {
 	    if (typeof Camera === "undefined") {
-			myApp.alert("The camera is not available");
+			myApp.alert(lsval("js no camera"));
 	    }
 	    else {
 	    	var options = setOptions(Camera.PictureSourceType.CAMERA);
@@ -197,7 +198,7 @@
 	
 	function galleryPhoto() {
 	    if (typeof Camera === "undefined") {
-			myApp.alert("Photo library is not available");
+			myApp.alert("js no library");
 	    }
 	    else {
 	    	var options = setOptions(Camera.PictureSourceType.PHOTOLIBRARY);
@@ -239,7 +240,7 @@
 	function processPhoto() {
 		console.log('processPhoto()');
 	
-		myApp.showPreloader('Loading...');
+		myApp.showPreloader(lsval('js Loading'));
 		setTimeout(function () {
 	   	myApp.hidePreloader();
 		}, 20000);
