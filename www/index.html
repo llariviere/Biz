@@ -31,7 +31,7 @@
 			  <a href="#" class="item-link current-list-open">
 		      <div class="item-content close-panel">
 		         <div class="item-inner">
-		            <div class="item-title">Current card list</div>
+		            <div class="item-title lshtm" data-text="Current card list">Current card list</div>
 		            <div class="item-after">
 		            	<span class="badge bg-green current-list-nbr">0</span>
 		            </div>
@@ -43,7 +43,7 @@
 		    	<a href="#" class="item-link waiting-list-open">
 		      <div class="item-content close-panel">
 		         <div class="item-inner">
-		            <div class="item-title">Waiting card list</div>
+		            <div class="item-title lshtm" data-text="Waiting card list">Waiting card list</div>
 		            <div class="item-after">
 		            	<span class="badge bg-red waiting-list-nbr">0</span>
 		            </div>
@@ -55,7 +55,7 @@
 		    	<a href="#" class="item-link my-card-open">
 		      <div class="item-content close-panel">
 		         <div class="item-inner">
-		            <div class="item-title">My profile</div>
+		            <div class="item-title lshtm" data-text="My profile">My profile</div>
 		            <div class="item-after"> </div>
 		          </div>
 		      </div>
@@ -65,7 +65,7 @@
 		    	<a href="#" class="item-link my-card-reload">
 		      <div class="item-content close-panel">
 		         <div class="item-inner">
-		            <div class="item-title">Synch my data</div>
+		            <div class="item-title lshtm" data-text="Synch my data">Synch my data</div>
 		            <div class="item-after"> </div>
 		          </div>
 		      </div>
@@ -75,7 +75,7 @@
 			  <a href="#" onclick="card_about();" class="item-link">
 		      <div class="item-content close-panel">
 		         <div class="item-inner">
-		            <div class="item-title">About</div>
+		            <div class="item-title lshtm" data-text="About">About</div>
 		          </div>
 		      </div>
 		      </a>
@@ -84,31 +84,31 @@
 		      <div class="item-content">
 		         <div class="item-inner">
 		            <div class="item-title" onClick="$$('#politics').toggleClass('hidden')">
-		            	Terms of Service and Privacy
+		            	<span class=" lshtm" data-text="Terms of Service and Privacy">Terms of Service and Privacy</span>
 		            	<ul id="politics" class="hidden">
 						    <li>
-							  <a href="#politics-services" class="item-link">
+							  <a href="#politics-service" class="item-link politics-service">
 						      <div class="item-content close-panel">
 						         <div class="item-inner">
-						            <div class="item-title">Terms of Services</div>
+						            <div class="item-title lshtm" data-text="Terms of Services">Terms of Services</div>
 						          </div>
 						      </div>
 						      </a>
 						    </li>
 						    <li>
-							  <a href="#politics-confidentiality" class="item-link" >
+							  <a href="#politics-privacy" class="item-link politics-privacy" >
 						      <div class="item-content close-panel">
 						         <div class="item-inner">
-						            <div class="item-title">Privacy Policy</div>
+						            <div class="item-title lshtm" data-text="Privacy Policy">Privacy Policy</div>
 						          </div>
 						      </div>
 						      </a>
 						    </li>
 						    <li>
-							  <a href="#politics-confidentiality" class="item-link" >
+							  <a href="#politics-summary" class="item-link politics-summary" >
 						      <div class="item-content close-panel">
 						         <div class="item-inner">
-						            <div class="item-title">Policy Summary</div>
+						            <div class="item-title lshtm" data-text="Policy Summary">Policy Summary</div>
 						          </div>
 						      </div>
 						      </a>
@@ -122,7 +122,7 @@
 		    	<a href="#subscription" class="item-link">
 		      <div class="item-content close-panel">
 		         <div class="item-inner">
-		            <div class="item-title">Subscription</div>
+		            <div class="item-title lshtm" data-text="Subscription">Subscription</div>
 		            <div class="item-after"> </div>
 		          </div>
 		      </div>
@@ -132,7 +132,7 @@
 		    	<a href="#upgrades" class="item-link">
 		      <div class="item-content close-panel">
 		         <div class="item-inner">
-		            <div class="item-title">Upgrades & Add-ons</div>
+		            <div class="item-title lshtm" data-text="Upgrades Add-ons">Upgrades & Add-ons</div>
 		            <div class="item-after"> </div>
 		          </div>
 		      </div>
@@ -142,7 +142,7 @@
 		    	<a href="#help" class="item-link">
 		      <div class="item-content close-panel">
 		         <div class="item-inner">
-		            <div class="item-title">Help</div>
+		            <div class="item-title lshtm" data-text="Help">Help</div>
 		            <div class="item-after"> </div>
 		          </div>
 		      </div>
@@ -152,7 +152,7 @@
 		    	<a href="#" class="item-link log-off">
 		      <div class="item-content close-panel">
 		         <div class="item-inner">
-		            <div class="item-title">Log off</div>
+		            <div class="item-title lshtm" data-text="Log off">Log off</div>
 		            <div class="item-after"> </div>
 		          </div>
 		      </div>
@@ -167,32 +167,13 @@
 		      </div>
 				</a>
 		    </li>
-		    <!--li>
-		    	<a href="#" onClick="" class="item-link initial-setup">
-		      <div class="item-content close-panel">
-		         <div class="item-inner">
-		            <div class="item-title">Setup</div>
-		            <div class="item-after"> </div>
-		          </div>
-		      </div>
-				</a>
-		    </li>
-		    <li>
-		    	<a href="#" onclick="card_remove(0);" class="item-link">
-		      <div class="item-content close-panel">
-		         <div class="item-inner">
-		            <div class="item-title">Delete my card</div>
-		            <div class="item-after"> </div>
-		          </div>
-		      </div>
-				</a>
-		    </li-->
+		    
 		  </ul>
 		</div>     
 
     </div>
 
-    <div class="login-screen modal-in" style="background-color: rgb(65, 141, 175);">
+    <div class="login-screen modal-in" style="background-color: rgb(65, 141, 175);background-color: rgb(60, 60, 60);">
     	<div class="content-block" style="text-align:center;padding:50px;">
     		<img src="img/title.png" style="width:100%;max-width:519px;" alt="Bizswiper">
     	</div>
@@ -201,9 +182,9 @@
           <ul style="background: transparent;">
             <li class="item-content">
               <div class="item-inner">
-                <div class="item-title label" style="text-align:right;width:80px;color:#ffffff;">Email:&nbsp;</div>
+                <div class="item-title label lshtm" data-text="email" style="text-align:right;width:80px;color:#ffffff;">Email:&nbsp;</div>
                 <div class="item-input">
-                  <input type="email" id="email" style="font-size:20px;color:white;" placeholder="Email" autocomplete="off">
+                  <input type="email" id="email" class="lsphr" data-text="email-phr" style="font-size:20px;color:white;background-color: transparent !important;border:0;" placeholder="Enter your email..." autocomplete="off" value="louis.lariviere@gmail.com">
                 </div>
               </div>
             </li>
@@ -212,7 +193,7 @@
         <div class="list-block" style="">
           <ul style="background: transparent;">
             <li>
-              <input type="submit" class="item-link list-button color-white" style="background: transparent;border:0;font-size:20px;width:100%;" value="Enter"/>
+              <input type="submit" class="item-link list-button color-white lsvlu" data-text="enter-button" style="background: transparent;border:0; font-size:20px; width:100%;" value="Enter"/>
             </li>
           </ul>
         </div>
@@ -235,14 +216,14 @@
 
          <div class="navbar-inner cached" data-page="card-add-user">
 				<div class="left">
-					<a href="#index" class="link" id="cancelPhoto">Cancel</a>
+					<a href="#index" class="link lshtm" data-text="cancel" id="cancelPhoto">Cancel</a>
 				</div>
-           <div class="center sliding">Add cards</div>
+           <div class="center sliding lshtm" data-text="Add cards">Add cards</div>
          </div>
           
 	      <div class="navbar-inner cached" data-page="card-entry">
             <div class="left"></div>
-	        	<div class="center sliding">Fill in card fields</div>
+	        	<div class="center sliding lshtm" data-text="Fill in card fields">Fill in card fields</div>
             <div class="right">
               <a href="#" class="link card-back-camera-open">Verso <i class="fa fa-camera"></i></a>
             </div>
@@ -250,12 +231,12 @@
           
           <div class="navbar-inner cached" data-page="current-list">
             <div class="left"></div>
-            <div class="center sliding">Current card list</div>
+            <div class="center sliding lshtm" data-text="Current card list">Current card list</div>
           </div>
           
           <div class="navbar-inner cached" data-page="waiting-list">
             <div class="left"></div>
-            <div class="center sliding">Waiting card list</div>
+            <div class="center sliding lshtm" data-text="Waiting card list">Waiting card list</div>
           </div>
           
           <div class="navbar-inner cached" data-page="card-form">
@@ -270,26 +251,35 @@
           
           <div class="navbar-inner cached" data-page="fields">
 				<div class="left">
-              <a href="#" class="link" id="fields_page_close">Close</a>
+              <a href="#" class="link lshtm" data-text="close" id="fields_page_close">Close</a>
 				</div>
-            <div class="center sliding">Choose a field name</div>
+            <div class="center sliding lshtm" data-text="Choose a field name">Choose a field name</div>
             <div class="right"></div>
           </div>
           
-          <div class="navbar-inner cached" data-page="politics-services">
+          <div class="navbar-inner cached" data-page="politics-service">
 				<div class="left">
               <a href="#index" class="link icon-only back"><i class="icon icon-back"></i></a>
 				</div>
-            <div class="center sliding">Politics : services</div>
+            <div class="center sliding lshtm" data-text="Politics : Services">Politics : Services</div>
             <div class="right">
             </div>
           </div>
           
-          <div class="navbar-inner cached" data-page="politics-confidentiality">
+          <div class="navbar-inner cached" data-page="politics-privacy">
 				<div class="left">
               <a href="#index" class="link icon-only back"><i class="icon icon-back"></i></a>
 				</div>
-            <div class="center sliding">Politics : confidentiality</div>
+            <div class="center sliding lshtm" data-text="Politics : Privacy">Politics : Privacy</div>
+            <div class="right">
+            </div>
+          </div>
+          
+          <div class="navbar-inner cached" data-page="politics-summary">
+				<div class="left">
+              <a href="#index" class="link icon-only back"><i class="icon icon-back"></i></a>
+				</div>
+            <div class="center sliding lshtm" data-text="Politics : Summary">Politics : Summary</div>
             <div class="right">
             </div>
           </div>
@@ -298,7 +288,7 @@
 				<div class="left">
               <a href="#index" class="link icon-only back"><i class="icon icon-back"></i></a>
 				</div>
-            <div class="center sliding">Subscription</div>
+            <div class="center sliding lshtm" data-text="Subscription">Subscription</div>
             <div class="right">
             </div>
           </div>
@@ -307,7 +297,7 @@
 				<div class="left">
               <a href="#index" class="link icon-only back"><i class="icon icon-back"></i></a>
 				</div>
-            <div class="center sliding">Upgrades & Add-ons</div>
+            <div class="center sliding lshtm" data-text="Upgrades Add-ons">Upgrades & Add-ons</div>
             <div class="right">
             </div>
           </div>
@@ -316,7 +306,7 @@
 				<div class="left">
               <a href="#index" class="link icon-only back"><i class="icon icon-back"></i></a>
 				</div>
-            <div class="center sliding">Messages</div>
+            <div class="center sliding lshtm" data-text="Messages">Messages</div>
             <div class="right">
             </div>
           </div>
@@ -325,13 +315,13 @@
 				<div class="left">
               <a href="#index" class="link icon-only back"><i class="icon icon-back"></i></a>
 				</div>
-            <div class="center sliding">Help</div>
+            <div class="center sliding lshtm" data-text="Help">Help</div>
             <div class="right">
             </div>
           </div>
           
           <div class="navbar-inner cached" data-page="initial-setup">
-            <div class="center sliding">Initial setup</div>
+            <div class="center sliding lshtm" data-text="Initial setup">Initial setup</div>
           </div>
           
         </div>
@@ -363,14 +353,14 @@
           
             <div class="page-content">
             
-              <div class="content-block-title no-thumb">Your ranking</div>
+              <div class="content-block-title no-thumb lshtm" data-text="Your ranking">Your ranking</div>
               
               <div class="content-block no-thumb">
               
                 <div class="content-block-inner inset">
                 
 						 <div class="pieID pie"></div>
-						 <div class="pieID pie_text">Bronze<br>60%</div>
+						 <div class="pieID pie_text">Bronze<br>%</div>
 						 <ul class="pieID legend">
 						   <li>
 						     <em>Actual</em>
@@ -393,7 +383,7 @@
                 </div>
               </div>
               
-					<div class="content-block-title no-thumb">Your card</div>
+					<div class="content-block-title no-thumb lshtm" data-text="Your card">Your card</div>
               
 					<div id="mycard" class="draggable">
 						<div class="handle"><i class="fa fa-chevron-up fa-2x"></i></div>
@@ -441,12 +431,12 @@
 					</div>
 					
 					<div class="list-block parameters hidden">
-						Parameters:
+						<span class=" lshtm" data-text="Parameters:">Parameters:</span>
 			      	<ul id="card-parameter">
 							<li class="list-item">
 								<div class="item-content">
 									<div class="item-inner">
-										<div class="item-title label" data-i="10" data-id="">Shake sensitivity</div>
+										<div class="item-title label lshtm" data-text="Shake sensitivity" data-i="10" data-id="">Shake sensitivity</div>
 										<div class="item-input">
 							            <div class="range-slider">
 							              <input type="range" min="0" max="100" value="40" step="10" name="10">
@@ -458,7 +448,7 @@
 							<li class="list-item">
 								<div class="item-content">
 									<div class="item-inner">
-										<div class="item-title label" data-i="11" data-id="">OCR auto-populate</div>
+										<div class="item-title label lshtm" data-text="OCR auto-populate" data-i="11" data-id="">OCR auto-populate</div>
 										<div class="item-input">
 							            <label class="label-switch">
 							              <input type="checkbox" name="11">
@@ -475,17 +465,17 @@
 			        <div class="row">
 			          <div class="col-33">
 			          	<a href="#" data-popup=".popup-crop" class="button button-big button-fill bg-gray open-popup">
-				          	<i class="fa fa-edit"> Images </i>
+				          	<i class="fa fa-edit"></i><span class=" lshtm" data-text="Images">Images</span> 
 			          	</a>
 			          </div>
 			          <div class="col-33">
 			          	<a href="#" onclick="B.container='#card-form-list';card_field_add();" class="button button-big button-fill bg-blue">
-			          		<i class="fa fa-plus-square"></i> Field 
+			          		<i class="fa fa-plus-square"></i> <span class=" lshtm" data-text="Field">Field</span> 
 			          	</a>
 			          </div>
 			          <div class="col-33">
 			          	<a href="#" onclick="card_record(B.list, B.index)" class="button button-big button-fill bg-green">
-			          		<i class="fa fa-save"></i> Record 
+			          		<i class="fa fa-save"></i><span class=" lshtm" data-text="Record">Record</span>  
 			          	</a>
 			          </div>
 			        </div>
@@ -494,10 +484,10 @@
 			      <div class="content-block waiting hidden">
 			        <div class="row">
 			          <div class="col-50">
-			          	<a href="#" onclick="card_auth(B.cardid, 'refuse')" class="button button-big button-fill bg-red">Refuse</a>
+			          	<a href="#" onclick="card_auth(B.cardid, 'refuse')" class="button button-big button-fill bg-red lshtm" data-text="Refuse">Refuse</a>
 			          </div>
 			          <div class="col-50">
-			          	<a href="#" onclick="card_auth(B.cardid, 'accept')" class="button button-big button-fill bg-green">Accept</a>
+			          	<a href="#" onclick="card_auth(B.cardid, 'accept')" class="button button-big button-fill bg-green lshtm" data-text="Accept">Accept</a>
 			          </div>
 			        </div>
 			      </div>
@@ -544,20 +534,20 @@
             </div>
             <div class="list-block inset">
 				  <p class="buttons-row">
-				    <button class="color-black col button button-big card-side front selected"><i class="fa fa-address-card fa-lg"></i> Front</button>
-				    <button class="color-black col button button-big card-side back"><i class="fa fa-credit-card fa-lg"></i> Back</button>
+				    <button class="color-black col button button-big card-side front selected"><i class="fa fa-address-card fa-lg"></i> <span class=" lshtm" data-text="Front">Front</span></button>
+				    <button class="color-black col button button-big card-side back"><i class="fa fa-credit-card fa-lg"></i> <span class=" lshtm" data-text="Back">Back</span></button>
 				  </p>
 				  <p class="buttons-row button-photo">
-				    <button class="button button-big color-black" id="capturePhoto">Take photo of <b><span class="card-side">front</span></b></button>
+				    <button class="button button-big color-black lshtm" data-text="capturePhoto" id="capturePhoto">Take photo of <b><span class="card-side">front</span></b></button>
 				  </p>
 				  <p class="buttons-row button-photo">
-				    <button class="button button-big color-black" id="listPhoto">Choose from file</button>
+				    <button class="button button-big color-black lshtm" data-text="listPhoto" id="listPhoto">Choose from file</button>
 				  </p>
 				  <p class="buttons-row button-photo">
-				    <button class="button button-big color-black" id="savePhoto">Save to file</button>
+				    <button class="button button-big color-black lshtm" data-text="savePhoto" id="savePhoto">Save to file</button>
 				  </p>
 				  <p class="buttons-row button-photo">
-				    <button class="button button-big color-black" id="processPhoto">Convert to card</button>
+				    <button class="button button-big color-black lshtm" data-text="processPhoto" id="processPhoto">Convert to card</button>
 				  </p>
 				</div>
 	        	
@@ -569,12 +559,12 @@
 		        <div class="row">
 		          <div class="col-50">
 		          	<a href="#" onclick="B.container='#add_card_list';card_field_add();" class="button button-big button-fill bg-blue">
-		          		<i class="fa fa-plus-square"></i> Field
+		          		<i class="fa fa-plus-square"></i> <span class=" lshtm" data-text="Field">Field</span> 
 		          	</a>
 		          </div>
 		          <div class="col-50">
 		          	<a href="#" onclick="card_record(B.list, B.index)" class="button button-big button-fill bg-green">
-		          		<i class="fa fa-save"></i> Record
+		          		<i class="fa fa-save"></i> <span class=" lshtm" data-text="Record">Record</span> 
 		          	</a>
 		          </div>
 		        </div>
@@ -595,16 +585,16 @@
 		      <div class="content-block">
 		        <div class="row">
 		          <div class="col-33">
-		          	<a href="#" class="back button button-big button-fill bg-red"><i class="fa fa-times-circle"></i> Cancel</a>
+		          	<a href="#" class="back button button-big button-fill bg-red lshtm" data-text="cancel"><i class="fa fa-times-circle"></i> Cancel</a>
 		          </div>
 		          <div class="col-33">
 		          	<a href="#" onclick="B.container='#add_card_list';card_field_add();" class="button button-big button-fill bg-blue">
-		          		<i class="fa fa-plus-square"></i> Field
+		          		<i class="fa fa-plus-square"></i> <span class=" lshtm" data-text="Field">Field</span> 
 		          	</a>
 		          </div>
 		          <div class="col-33">
 		          	<a href="#" onclick="card_record(B.list, B.index)" class="button button-big button-fill bg-green">
-		          		<i class="fa fa-save"></i> Record
+		          		<i class="fa fa-save"></i>  <span class=" lshtm" data-text="Record">Record</span> 
 		          	</a>
 		          </div>
 		        </div>
@@ -639,15 +629,15 @@
 								<div class="card-info-pastille a">1</div>
 							</div>
 							<div class="card-info-txt" id="setup-1">
-								<div class="card-info-name">Your Firstname</div>
+								<div class="card-info-name lshtm" data-text="Your Firstname">Your Firstname</div>
 								<div class="card-info-input"><input type="text" name="35" value=""/></div>
-								<div class="card-info-name">Your Lastname</div>
+								<div class="card-info-name lshtm" data-text="Your Lastname">Your Lastname</div>
 								<div class="card-info-input"><input type="text" name="38" value=""/></div>
-								<div class="card-info-name">Your Title</div>
+								<div class="card-info-name lshtm" data-text="Your Title">Your Title</div>
 								<div class="card-info-input"><input type="text" name="40" value=""/></div>
 								<div class="card-info-button hidden" onClick="B.swiper.slideNext()">
 									<a href="#" class="button button-big button-fill color-blue">
-										Next step <i class="fa fa-step-forward"></i>
+										<span class=" lshtm" data-text="Next step">Next step</span> <i class="fa fa-step-forward"></i>
 									</a>
 								</div>
 							</div>
@@ -657,17 +647,17 @@
 								<div class="card-info-pastille b">2</div>
 							</div>
 							<div class="card-info-txt" id="setup-2">
-								<div class="card-info-name">Cell phone</div>
+								<div class="card-info-name lshtm" data-text="Cell phone">Cell phone</div>
 								<div class="card-info-input"><input type="tel" name="26" class="tel" value="" placeholder="999 999 9999"/></div>
 								<div class="card-info-button reveal hidden" onClick="card_sms_validate();">
 									<a href="#" class="button button-big button-fill color-blue">
-										Send SMS to validate <i class="fa fa-comment"></i>
+										<span class=" lshtm" data-text="Send SMS to validate">Send SMS to validate</span> <i class="fa fa-comment"></i>
 									</a>
 								</div>
-								<div class="card-info-name reveal hidden" style="text-align:center;">OR</div>
+								<div class="card-info-name reveal hidden lshtm" data-text="OR" style="text-align:center;">OR</div>
 								<div class="card-info-button reveal hidden" onClick="B.swiper.slideNext()">
 									<a href="#" class="button button-big button-fill color-blue">
-										Next step <i class="fa fa-step-forward"></i>
+										<span class=" lshtm" data-text="Next step">Next step</span> <i class="fa fa-step-forward"></i>
 									</a>
 								</div>
 							</div>
@@ -677,15 +667,15 @@
 								<div class="card-info-pastille c">3</div>
 							</div>
 							<div class="card-info-txt" id="setup-3">
-								<div class="card-info-name">Your Company Name</div>
+								<div class="card-info-name lshtm" data-text="Your Company Name">Your Company Name</div>
 								<div class="card-info-input"><input type="text" name="29" class="" value=""/></div>
-								<div class="card-info-name">Your Company Category</div>
+								<div class="card-info-name lshtm" data-text="Your Company Category">Your Company Category</div>
 								<div class="card-info-input"><input type="text" name="49" class="catg" value=""/></div>
-								<div class="card-info-name">Your Job Function</div>
+								<div class="card-info-name lshtm" data-text="Your Job Function">Your Job Function</div>
 								<div class="card-info-input"><input type="text" name="23" class="func" value=""/></div>
 								<div class="card-info-button">
 									<a href="#" class="button button-big button-fill color-blue">
-										Finnish <i class="fa fa-flag-checkered"></i>
+										<span class=" lshtm" data-text="Finnish">Finnish</span> <i class="fa fa-flag-checkered"></i>
 									</a>
 								</div>
 							</div>
@@ -702,7 +692,7 @@
 			<div class="page cached no-tabbar toolbar-fixed" data-page="card-messages">
 				<div class="toolbar messagebar">
 				  <div class="toolbar-inner">
-				    <textarea placeholder="Message"></textarea><a href="#" class="link">Send</a>
+				    <textarea class=" lsphr" data-text="Your message..." placeholder="Your message..."></textarea><a href="#" class="link lshtm" data-text="Send">Send</a>
 				  </div>
 				</div>   
 				<div class="page-content messages-content">
@@ -713,14 +703,14 @@
   
 			<div class="page cached no-tabbar" id="card-email" data-page="card-email">
 				<div class="page-content">
-					<div class="content-block-title">New message</div>
+					<div class="content-block-title lshtm" data-text="New message">New message</div>
 					
 					<div class="list-block" style="height:calc(100% - 180px);">
 					  <ul style="height:calc(100% - 40px);">
 					    <li>
 					      <div class="item-content">
 					        <div class="item-inner">
-					          <div class="item-title label">To : </div>
+					          <div class="item-title label lshtm" data-text="To :">To :</div>
 					          <div class="item-input">
 					            <input type="text" class="to">
 					          </div>
@@ -730,7 +720,7 @@
 					    <li>
 					      <div class="item-content">
 					        <div class="item-inner">
-					          <div class="item-title label">Subject : </div>
+					          <div class="item-title label lshtm" data-text="Subject :">Subject : </div>
 					          <div class="item-input">
 					            <input type="text" class="subject">
 					          </div>
@@ -752,28 +742,32 @@
 			      <div class="content-block">
 			        <div class="row">
 			          <div class="col-50">
-			          	<a href="#" onclick="mainView.router.back()" class="button button-big button-fill bg-red">Cancel</a>
+			          	<a href="#" onclick="mainView.router.back()" class="button button-big button-fill bg-red lshtm" data-text="cancel">Cancel</a>
 			          </div>
 			          <div class="col-50">
-			          	<a href="#" onclick="card_email_send()" class="button button-big button-fill bg-green">Send</a>
+			          	<a href="#" onclick="card_email_send()" class="button button-big button-fill bg-green lshtm" data-text="Send">Send</a>
 			          </div>
 			        </div>
 			      </div>
 				</div>
 			</div>
   
-			<div class="page cached no-tabbar" data-page="politics-services">
+			<div class="page cached no-tabbar" data-page="politics-service">
 				<div class="page-content"></div>
 			</div>
 			
-			<div class="page cached no-tabbar" data-page="politics-confidentiality">
+			<div class="page cached no-tabbar" data-page="politics-privacy">
+				<div class="page-content"></div>
+			</div>
+			
+			<div class="page cached no-tabbar" data-page="politics-summary">
 				<div class="page-content"></div>
 			</div>
 			
 			<div class="page cached no-tabbar" data-page="subscription">
 				<div class="page-content">
 					<div class="list-block">
-						Billing:
+						<span class=" lshtm" data-text="Billing:">Billing:</span>
 			      	<ul>
 							<li class="list-item">
 								<div class="item-content">
@@ -805,14 +799,14 @@
 			
 			<div class="page cached no-tabbar" data-page="help" id="help">
 				<div class="page-content">
-					 <div class="content-block-title">Please help us build a f.a.q. database.</div>
-					 <div class="content-block-title" style="margin-top:0;">write as much details that you can.</div>
+					 <div class="content-block-title lshtm" data-text="Please help">Please help us build a F.A.Q. database.</div>
+					 <div class="content-block-title lshtm" data-text="write as much" style="margin-top:0;">write as much details that you can.</div>
 					<div class="list-block"  style="height:calc(100% - 180px);">
 					  <ul style="height:calc(100% - 40px);">
 					    <li>
 					      <div class="item-content">
 					        <div class="item-inner">
-					          <div class="item-title label">To : </div>
+					          <div class="item-title label lshtm" data-text="To :">To : </div>
 					          <div class="item-input">
 					            <input type="text" class="to" value="help@biz" readonly="true">
 					          </div>
@@ -822,9 +816,9 @@
 					    <li>
 					      <div class="item-content">
 					        <div class="item-inner">
-					          <div class="item-title label">Subject : </div>
+					          <div class="item-title label lshtm" data-text="Subject :">Subject : </div>
 					          <div class="item-input">
-					            <input type="text" class="subject" value="Need help" readonly="true">
+					            <input type="text" class="subject lsvlu" data-text="Need help" value="Need help" readonly="true">
 					          </div>
 					        </div>
 					      </div>
@@ -844,10 +838,10 @@
 			      <div class="content-block">
 			        <div class="row">
 			          <div class="col-50">
-			          	<a href="#" onclick="mainView.router.back()" class="button button-big button-fill bg-red">Cancel</a>
+			          	<a href="#" onclick="mainView.router.back()" class="button button-big button-fill bg-red lshtm" data-text="cancel">Cancel</a>
 			          </div>
 			          <div class="col-50">
-			          	<a href="#" onclick="card_email_send('help')" class="button button-big button-fill bg-green">Send</a>
+			          	<a href="#" onclick="card_email_send('help')" class="button button-big button-fill bg-green lshtm" data-text="Send">Send</a>
 			          </div>
 			        </div>
 			      </div>
@@ -868,9 +862,9 @@
   <div class="picker-modal picker-ocr-words" style="height:100%;overflow:scroll;">
     <div class="toolbar">
       <div class="toolbar-inner">
-        <div class="left"><a href="#" class="close-picker">Cancel</a></div>
-        <div class="center" id="card_ocr_title">Pick words</div>
-        <div class="right"><a href="#" class="close-picker" onClick="card_ocr_ok()">Ok</a></div>
+        <div class="left"><a href="#" class="close-picker lshtm" data-text="cancel">Cancel</a></div>
+        <div class="center lshtm" data-text="Pick words" id="card_ocr_title">Pick words</div>
+        <div class="right"><a href="#" class="close-picker lshtm" data-text="Ok" onClick="card_ocr_ok()">Ok</a></div>
       </div>
     </div>
     <div class="picker-modal-inner">
@@ -881,9 +875,9 @@
   <div class="popup popup-category">
       <div class="navbar">
 	      <div class="navbar-inner">
-	        <div class="left"><a href="#" class="close-popup">Cancel</a></div>
+	        <div class="left"><a href="#" class="close-popup lshtm" data-text="cancel">Cancel</a></div>
 	        <div class="center"></div>
-	        <div class="right"><a href="#" class="close-popup" id="popup-category-ok">Ok</a></div>
+	        <div class="right"><a href="#" class="close-popup lshtm" data-text="Ok" id="popup-category-ok">Ok</a></div>
 	      </div>
       </div>
   		<div class="list-block accordion-list">
@@ -892,7 +886,7 @@
 				<div class="accordion-item-toggle">
 					<a href="#" class="item-content item-link">
 						<div class="item-inner">
-				         <div class="item-title">Sectors</div>
+				         <div class="item-title lshtm" data-text="Sectors">Sectors</div>
 			        	</div>
 		        </a>
 				</div>
@@ -905,7 +899,7 @@
 				<div class="accordion-item-toggle">
 					<a href="#" class="item-content item-link">
 						<div class="item-inner">
-				         <div class="item-title">Industries</div>
+				         <div class="item-title lshtm" data-text="Industries">Industries</div>
 			        	</div>
 		        </a>
 				</div>
@@ -914,7 +908,7 @@
 						<li>
 							<label class="label-radio item-content">
 								<div class="item-inner">
-									<div class="item-title">Please select in previous level</div>
+									<div class="item-title lshtm" data-text="Please select">Please select in previous level</div>
 								</div>
 							</label>
 						</li>
@@ -926,7 +920,7 @@
 				<div class="accordion-item-toggle">
 					<a href="#" class="item-content item-link">
 						<div class="item-inner">
-				         <div class="item-title">Functions</div>
+				         <div class="item-title lshtm" data-text="Functions">Functions</div>
 			        	</div>
 		        </a>
 				</div>
@@ -935,7 +929,7 @@
 						<li>
 							<label class="label-radio item-content">
 								<div class="item-inner">
-									<div class="item-title">Please select in previous level</div>
+									<div class="item-title lshtm" data-text="Please select">Please select in previous level</div>
 								</div>
 							</label>
 						</li>
@@ -948,7 +942,7 @@
 				<div class="accordion-item-toggle">
 					<a href="#" class="item-content item-link">
 						<div class="item-inner">
-				         <div class="item-title">Countries</div>
+				         <div class="item-title lshtm" data-text="Countries">Countries</div>
 			        	</div>
 		        </a>
 				</div>
@@ -957,7 +951,7 @@
 						<li>
 							<label class="label-radio item-content">
 								<div class="item-inner">
-									<div class="item-title">Please select in previous level</div>
+									<div class="item-title lshtm" data-text="Please select">Please select in previous level</div>
 								</div>
 							</label>
 						</li>
@@ -971,8 +965,8 @@
   <div class="popup popup-crop">
     <div class="navbar">
       <div class="navbar-inner">
-        <div class="left"><a href="#" data-popup=".popup-crop" class="close-popup">Close</a></div>
-        <div class="center">Image Editor</div>
+        <div class="left"><a href="#" data-popup=".popup-crop" class="close-popup lshtm" data-text="close">Close</a></div>
+        <div class="center lshtm" data-text="Image Editor">Image Editor</div>
         <div class="right"></div>
       </div>
     </div>
@@ -985,11 +979,11 @@
        <div class="col-35">
        	<div class="item-input" style="height:27px;border:solid 1px #ccc;border-radius:5px;margin-top:0">
 	       	<select id="img_input" style="height:27px;">
-	       		<option value="0">- Choose -</option>
-	       		<option value="44">Card Front</option>
-	       		<option value="45">Card Back</option>
-	       		<option value="52">Avatar</option>
-	       		<option value="50">Card Logo</option>
+	       		<option value="0"  class=" lshtm" data-text="">- Choose -</option>
+	       		<option value="44" class=" lshtm" data-text="">Card Front</option>
+	       		<option value="45" class=" lshtm" data-text="">Card Back</option>
+	       		<option value="52" class=" lshtm" data-text="">Avatar</option>
+	       		<option value="50" class=" lshtm" data-text="">Card Logo</option>
 	       	</select>
        	</div>
        </div>
@@ -997,7 +991,7 @@
        	or
        </div>
        <div class="col-30">
-       	<a href="#" class="button button-fill bg-gray card-other-camera-open">Open <i class="fas fa-image"></i></a>
+       	<a href="#" class="button button-fill bg-gray card-other-camera-open"><span class=" lshtm" data-text="Open">Open</span> <i class="fas fa-image"></i></a>
        </div>
      </div>
      <div class="row"><div><br></div></div>
@@ -1008,16 +1002,16 @@
        <div class="col-45">
        	<div class="item-input" style="height:27px;border:solid 1px #ccc;border-radius:5px;margin-top:0">
 	       	<select id="img_output" style="height:27px;">
-	       		<option value="0">Same as input</option>
-	       		<option value="44">as Card-Front</option>
-	       		<option value="45">as Card-Back</option>
-	       		<option value="52">as Avatar</option>
-	       		<option value="50">as Card Logo</option>
+	       		<option value="0"  class=" lshtm" data-text="Same as input">Same as input</option>
+	       		<option value="44" class=" lshtm" data-text="as Card-Front">as Card-Front</option>
+	       		<option value="45" class=" lshtm" data-text="as Card-Back">as Card-Back</option>
+	       		<option value="52" class=" lshtm" data-text="as Avatar">as Avatar</option>
+	       		<option value="50" class=" lshtm" data-text="as Card Logo<">as Card Logo</option>
 	       	</select>
        	</div>
        </div>
        <div class="col-30">
-       	<a href="#" onclick="croper_record()" class="button button-fill bg-green">Save <i class="fas fa-save"></i></a>
+       	<a href="#" onclick="croper_record()" class="button button-fill bg-green"><span class=" lshtm" data-text="Save">Save</span> <i class="fas fa-save"></i></a>
        </div>
      </div>
    </div>
@@ -1049,7 +1043,7 @@
       <div class="navbar-inner">
         <div class="left"></div>
         <div class="center"></div>
-        <div class="right"><a href="#" class="close-popup">Ok</a></div>
+        <div class="right"><a href="#" class="close-popup lshtm" data-text="Ok">Ok</a></div>
       </div>
     </div>
    <div class="content-block" style="padding:2px 2px;"></div>
@@ -1062,7 +1056,7 @@
 	<div class="navbar">
 		<div class="navbar-inner" data-page="current-list">
 			<div class="left"></div>
-			<div class="center "><h3>Card list</h3></div>
+			<div class="center"><h3 class="lshtm" data-text="Card list">Card list</h3></div>
 		</div>
 	</div>
 
@@ -1070,10 +1064,10 @@
 	
 	<form class="searchbar searchbar-init" data-search-list=".list-block-search" data-search-in=".item-title" data-found=".searchbar-found" data-not-found=".searchbar-not-found">
 		<div class="searchbar-input">
-			<input type="search" placeholder="Search">
+			<input type="search" class=" lsphr" data-text="Search" placeholder="Search">
 			<a href="#" class="searchbar-clear"></a>
 		</div>
-		<a href="#" class="searchbar-cancel">Cancel</a>
+		<a href="#" class="searchbar-cancel lshtm" data-text="cancel">Cancel</a>
 	</form>
     
    <div class="searchbar-overlay"></div>
@@ -1081,7 +1075,7 @@
 	<div class="page-content">
 	
 		<div class="content-block searchbar-not-found">
-	   	Nothing found
+	   	<span class=" lshtm" data-text="Nothing found">Nothing found</span>
 		</div>
         
 		<div class="list-block list-block-search searchbar-found">
@@ -1095,7 +1089,7 @@
 		          </div>
 		      </div>
 		      <div class="swipeout-actions-left">
-		        <a href="#" onclick="card_del('{{id}}');event.stopPropagation();" data-id="{{id}}" class="a-swipeout delete bg-red">Delete</a>
+		        <a href="#" onclick="card_del('{{id}}');event.stopPropagation();" data-id="{{id}}" class="a-swipeout delete bg-red lshtm" data-text="Delete">Delete</a>
 		      </div>
 		      <div class="swipeout-actions-right">
 		        <a href="#" onclick="card_cell(this);event.stopPropagation();" class="a-swipeout bg-green"><span style="display:none">C: {{cellphone}}</span><i class="fa fa-phone fa-lg"></i></a>
@@ -1106,7 +1100,7 @@
 		    <li>
 		      <div class="item-content">
 		         <div class="item-inner">
-		            <div class="item-title">No card yet</div>
+		            <div class="item-title lshtm" data-text="No card yet">No card yet</div>
 		            <div class="item-after"></div>
 		          </div>
 		      </div>
@@ -1125,7 +1119,7 @@
 	<div class="navbar">
 		<div class="navbar-inner" data-page="waiting-list">
 			<div class="left"></div>
-			<div class="center "><h3>Waiting list</h3></div>
+			<div class="center "><h3 class=" lshtm" data-text="Waiting list">Waiting list</h3></div>
 		</div>
 	</div>
 
@@ -1144,23 +1138,23 @@
 	          </div>
 	      </div>
 	      <!--div class="swipeout-actions-left">
-	        <a href="#" onclick="card_auth('{{id}}', 'refuse');event.stopPropagation();" class="card-refuse a-swipeout delete bg-red">Refuse</a>
+	        <a href="#" onclick="card_auth('{{id}}', 'refuse');event.stopPropagation();" class="card-refuse a-swipeout delete bg-red lshtm" data-text="Refuse">Refuse</a>
 	      </div>
 	      <div class="swipeout-actions-right">
-	        <a href="#" onclick="card_auth('{{id}}', 'accept');event.stopPropagation();" class="card-accept a-swipeout bg-green">Accept</a>
+	        <a href="#" onclick="card_auth('{{id}}', 'accept');event.stopPropagation();" class="card-accept a-swipeout bg-green lshtm" data-text="Accept">Accept</a>
 	      </div-->
 	      <div class="swipeout-actions-left">
-	        <a href="#" class="card-refuse a-swipeout delete bg-red">Refuse</a>
+	        <a href="#" class="card-refuse a-swipeout delete bg-red lshtm" data-text="Refuse">Refuse</a>
 	      </div>
 	      <div class="swipeout-actions-right">
-	        <a href="#" class="card-accept a-swipeout bg-green">Accept</a>
+	        <a href="#" class="card-accept a-swipeout bg-green lshtm" data-text="Accept">Accept</a>
 	      </div>
 	    </li>
 	    {{else}}
 	    <li>
 	      <div class="item-content">
 	         <div class="item-inner">
-	            <div class="item-title">No card yet</div>
+	            <div class="item-title lshtm" data-text="No card yet">No card yet</div>
 	            <div class="item-after"></div>
 	          </div>
 	      </div>
@@ -1174,12 +1168,14 @@
 </script>  
     
     <script type="text/javascript" src="js/framework7.min.js"></script>
-    <script type="text/javascript" src="js/template.js"></script>
+    <script type="text/javascript" src="js/init.js"></script>
+    <script type="text/javascript" src="js/language.js"></script>
+    <script type="text/javascript" src="js/croppie.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/socket.io.js"></script>
+    <script type="text/javascript" src="js/template.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
     <script type="text/javascript" src="js/exchange.js"></script>
     <script type="text/javascript" src="js/camera.js?2019"></script>
-    <script type="text/javascript" src="js/croppie.js"></script>
   </body>
 </html>
