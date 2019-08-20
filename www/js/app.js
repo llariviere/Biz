@@ -1,12 +1,25 @@
 /* B.ï.Z specific /var/www/html/card/js/app.js */
 
+var B = {
+	version: '1.0.2 (2019-08)',
+	about:lsval('js about')+'1.0.2 (2019-08)',
+	server:'https://virtualbizcards.com:3333/',
+	options: {
+		ocr_match: true,
+		shake_level: 40
+	},
+	croper:{},
+	crop_opts:{"img":'img/b.png',"card":{ width: ($$("body").width() - 10), height: (($$("body").width() - 10) / 3.5 * 2), type: 'square' },"boundary":{ width: ($$("body").width() - 10), height: (($$("body").width() - 10) / 3.5 * 2)}}
+};
+
+
  var myApp = new Framework7({
 	precompileTemplates: true,
 	template7Pages: true,
 	allowDuplicateUrls:true,
 	modalTitle: 'B.&iuml;.Z',
-	modalButtonCancel: 'Cancel...',
-	modalPreloaderTitle: 'One moment please...',
+	modalButtonCancel: lsval('cancel')+'...',
+	modalPreloaderTitle: lsval('js One moment please'),
 	scrollTopOnStatusbarClick: true,
 	uniqueHistory: true,
 	routerRemoveWithTimeout: true,
@@ -17,19 +30,6 @@ var mySwiper = myApp.swiper('.swiper-container', {
    pagination:'.swiper-pagination',
    allowSlideNext: false
 });
-
-var $$ = Dom7;
-
-var B = {
-	about:'B.&iuml;.Z is a product of Kontakt Mondo inc. and all related subdiaries . Reserved brand blblbl.<p> KontaktMondo is an incorporation under Canada law bbllblba on May xx 2019. </p> <p>Current version in used: 0.7.1 (2019-06)',
-	server:'https://virtualbizcards.com:3333/',
-	options: {
-		ocr_match: true,
-		shake_level: 40
-	},
-	croper:{},
-	crop_opts:{"img":'img/b.png',"card":{ width: ($$("body").width() - 10), height: (($$("body").width() - 10) / 3.5 * 2), type: 'square' },"boundary":{ width: ($$("body").width() - 10), height: (($$("body").width() - 10) / 3.5 * 2)}}
-};
 
 var templates_name = ["Standard","Classical","Centered"];
 
@@ -133,11 +133,11 @@ function card_populate() {
 		
 		var next_target = "Your next target:<br>Bronze";
 		switch(img.points_img) {
-			case "Bronze":	next_target = "Your next target:<br>Silver"; break;
-			case "Silver": next_target = "Your next target:<br>Gold"; 	break;
-			case "Gold": 	next_target = "Your next target:<br>Diamond";break;
+			case "Bronze":	next_target = lsval('js Your next target')+":<br>"+lsval('js Silver'); break;
+			case "Silver": next_target = lsval('js Your next target')+":<br>"+lsval('js Gold'); 	break;
+			case "Gold": 	next_target = lsval('js Your next target')+":<br>"+lsval('js Diamond');break;
 			case "Diamond":
-				next_target = "You're at the TOP!"; 			
+				next_target = lsval("js at top"); 			
 				$$(".pieID.legend li.missing, .pieID.legend li.target").hide();
 				break;
 		}
@@ -146,6 +146,11 @@ function card_populate() {
 		pie_create(".pieID.legend", ".pieID.pie");
 		
 		B.cardid = B.cards.mycard.id;
+		
+		if (!B.t) {
+			B.h = $$("#mycard").width() / 3.5 * 2.0;
+			B.t = window.screen.height - B.h - 60;
+		}
 		
 	}
 	else {
@@ -170,9 +175,6 @@ function card_populate() {
 	c.points_img = (c.points_img ? c.points_img : 'bronze');
 	$$("#"+B.list+" .points > img").attr("src", "img/badge_"+ c.points_img.toLowerCase() +".png");
 	$$(".card-info-title").text(complete_name);
-		
-	B.h = $$("#"+B.list).width() / 3.5 * 2.0;
-	B.t = $$("#"+B.list).offset().top;
 	
 	$$("#"+B.list).data("top", B.t);
 	$$("#"+B.list).css({"height": B.h, "bottom":B.t+B.h});
@@ -326,13 +328,13 @@ function card_init(card_side) {
 			
 			if ($$("#card_ocr_words").find(".word").length) {
 				var html = '<div class="list-block" style="margin:0px;line-height:35px;"> \
-					<input id="card_ocr_input" type="text" name="" value="'+B.input_text+'" placeholder="Pick words or enter text..."/> \
+					<input id="card_ocr_input" type="text" name="" value="'+B.input_text+'" placeholder="'+lsval('js pick words')+'"/> \
 						Words from the card: \
 				</div>';
 			}
 			else {
 				var html = '<div class="list-block" style="margin:0px;line-height:35px;"> \
-					<input id="card_ocr_input" type="text" name="" value="'+B.input_text+'" placeholder="Enter text..."/> \
+					<input id="card_ocr_input" type="text" name="" value="'+B.input_text+'" placeholder="'+lsval('js Enter text')+'"/> \
 				</div>';
 			}
 			
@@ -381,7 +383,7 @@ function card_input_modal() {
 	B.input_type = $$(this).attr("class").replace('active-state','').trim();
 	B.input_labl = $$(this).data('label');
 	var aftertext = '<input type="text" value="'+B.input_text+'">';
-	var title = 'Enter value for <b>'+B.input_labl+'</b>';
+	var title = lsval('js Enter value for')+' <b>'+B.input_labl+'</b>';
 	
 	switch (B.input_type) {
 		case 'catg' : 
@@ -391,7 +393,7 @@ function card_input_modal() {
 			return false;
 		case 'date' : 
 			aftertext = '<input type="hidden" id="calendar-input"><div id="calendar-inline-container"></div>';
-			title = 'Select value for <b>'+B.input_labl+'</b>';
+			title = lsval('js Select value for')+' <b>'+B.input_labl+'</b>';
 			break;
 		case 'img'  : break;
 		case 'mail' : break;
@@ -401,11 +403,11 @@ function card_input_modal() {
 		case 'tpl'  : break;
 		case 'en,fr': 
 			aftertext = '<select><option value="en">english</option><option '+(B.input_text=='fr' ? 'selected' : '')+' value="fr">francais</option></select>';
-			title = 'Select value for <b>'+B.input_labl+'</b>';
+			title = lsval('js Select value for')+' <b>'+B.input_labl+'</b>';
 			break;
 		case 'm,f'  : 
 			aftertext = '<select><option value="m">Male</option><option '+(B.input_text=='f' ? 'selected' : '')+' value="f">Femalle</option></select>';
-			title = 'Select value for <b>'+B.input_labl+'</b>';
+			title = lsval('js Select value for')+' <b>'+B.input_labl+'</b>';
 			break;
 	}
 	
@@ -415,10 +417,10 @@ function card_input_modal() {
   		afterText:aftertext,
   		buttons: [
   			{
-  				text:'Cancel'
+  				text:lsval('cancel')
   			},
   			{
-  				text:'Ok',
+  				text:lsval('Ok'),
   				onClick: function () {
   					var value = $$(myModal).find('input,select').val();
   					if (value.replace(/\s/g,'')=='') return false;
@@ -446,7 +448,7 @@ function card_input_modal() {
 function card_record() {
 	console.log('card_record()');
 	
-	myApp.showPreloader('Recording...');
+	myApp.showPreloader(lsval('js Recording...'));
 	setTimeout(function () {
    	myApp.hidePreloader();
 	}, 8000);
@@ -479,7 +481,7 @@ function card_record() {
 		// Delete non-mandatory field without value...
 		if (valeur=='' && pars.id==B.cards.mycard.id) {
 			if (oblige) {
-				myApp.alert("Field '"+label+"' is mandatory!<br>Please enter a value.");
+				myApp.alert(lsval("js field")+label+lsval("js is mandatory"));
 				$$(li).find("input").focus();
 				pars = false;
 				return false;
@@ -517,7 +519,7 @@ function card_record() {
 	
 	// Validate that email field is present and valid...
 	if (pars['33']==undefined || !validateEmail(pars['33'])) {
-		myApp.alert("You MUST have a valid value for the 'Email' field!");
+		myApp.alert(lsval("js valid value"));
 		return false;
 	}
 	
@@ -540,7 +542,7 @@ function card_record() {
 		if (pars.id==B.cards.mycard.id) {
 			B.list 	= "mycard";
 			B.index 	= false;
-			B,cardid = pars.id;
+			B.cardid = pars.id;
 			/*
 			if (typeof shake !== 'undefined') {
 				shake.stopWatch();
@@ -565,7 +567,7 @@ function card_recorder(data) {
 		for (var i=0; i<data.cards_fields.length; i++) B.cards_fields.push(data.cards_fields[i]);
 	}
 		
-	myApp.alert("New card added to your current list!");
+	myApp.alert(lsval("js added current"));
 	$$(".badge.current-list-nbr").html(B.cards.current.length);
 	$$(".current-list-open").trigger("click");
 	
@@ -579,7 +581,7 @@ function card_field_add() {
 	var i = 0;
 	var add_new = true;
 	var l = '', n = '', html = ['','','','','',''];
-	var families = ['Families','Address fields','Personal infos','Phone numbers','Business infos','Other fields'];
+	var families = lsval('js families');
 	var li_tpl = '<li>' +
 			      '<label class="label-checkbox item-content">' +
 			        '<input type="checkbox" name="{{ii}}" value="{{i}}" data-name="{{l}}" class="other" {{checked}}>' +
@@ -611,9 +613,9 @@ function card_field_add() {
     '<div class="picker-modal choseModal" style="height:100%">' +
       '<div class="toolbar">' +
         '<div class="toolbar-inner">' +
-          '<div class="left"><a href="#" class="close-picker">Cancel</a></div>' +
+          '<div class="left"><a href="#" class="close-picker">'+lsval('cancel')+'</a></div>' +
           'Choose fields to add' +
-          '<div class="right"><a href="#" class="ok-picker">Ok</a></div>' +
+          '<div class="right"><a href="#" class="ok-picker">'+lsval('Ok')+'</a></div>' +
         '</div>' +
       '</div>' +
       '<div class="picker-modal-inner" style="overflow:scroll;">' +
@@ -709,7 +711,7 @@ function card_field_add() {
 			 	add_card_li(ii,'-change-',n,i)
 		  	}
 	  		if (i==999) {
-	  			myApp.prompt('What is the field\'s name?', 'Custom Field <i class="fa fa-cube"></i>', function (value) {
+	  			myApp.prompt(lsval('js field name'), lsval('js Custom Field')+' <i class="fa fa-cube"></i>', function (value) {
 	  				if (value.replace(/\s/g,'')=='') return false;
 	  				card_custom_field_validate(ii, value);
 			   },
@@ -942,7 +944,7 @@ function card_email_send(help) {
 		socket.emit('card share email',pars);
 		mainView.router.back();
 	} else {
-		myApp.alert("The email address is not valid.")
+		myApp.alert(lsval("fs bad email"))
 	}
 	$$("#"+container).find("textarea").val('');
 }
@@ -988,7 +990,7 @@ function card_messages(e) {
 	    avatar: avatar,
 	    name: name,
 	    // Day
-	    day: !conversationStarted ? 'Today' : false,
+	    day: !conversationStarted ? lsval('js Today') : false,
 	    time: !conversationStarted ? (new Date()).getHours() + ':' + (new Date()).getMinutes() : false
 	  })
 	 
@@ -1009,8 +1011,8 @@ function card_cell(e) {
 	cordova.plugins.phonedialer.dial(
 	  cell, 
 	  function(err) {
-	    if (err == "empty") myApp.alert("Unknown phone number");
-	    else myApp.alert("Dialer Error:" + err);    
+	    if (err == "empty") myApp.alert(lsval("js Unknown phone number"));
+	    else myApp.alert(lsval("js Dialer Error:") + err);    
 	  },
 	  function(success) {  }
 	);
@@ -1075,8 +1077,12 @@ function card_initial_setup() {
 			//B.cards_fields.push({cid:pars.id, fid:$$(this).attr("name"), own:pars.id, v:$$(this).val()});
 		});
 		socket.emit('card record', pars);
+		
+		B.list 	= "mycard";
+		B.index 	= false;
+		B.cardid = pars.id;
 			
-		card_populate('mycard','')
+		card_populate()
 		
 		mainView.router.load({pageName: 'index'});
 	});
@@ -1126,12 +1132,12 @@ function card_share(list, by) {
 	var aftertext = '<input type="text" value="">';
 	
 	switch(by) {
-		case 'email':title='Email sharing';aftertext = 'Enter the email address:'+aftertext; break;
-		case 'texto': title='SMS sharing'; aftertext = 'Enter the cellphone number:'+aftertext; break;
+		case 'email':title=lsval('js Email sharing');aftertext = lsval('js Enter the email address:')+aftertext; break;
+		case 'texto': title=lsval('js SMS sharing'); aftertext = lsval('js Enter the cellphone number:')+aftertext; break;
 		case 'qrcode': socket.emit('card qr', {"cardid":id}); return false; break;
 		case 'direct': 
-			title='Direct sharing'; 
-			var recipients = '<select><option value="">-- choose --</option>';
+			title=lsval('js Direct sharing'); 
+			var recipients = '<select><option value="">-- '+lsval('js choose')+' --</option>';
 			$$.each(B.cards.current, function(i,card) {
 				if (!card.payed_date) return true;
 				var cid = card.id;
@@ -1143,7 +1149,7 @@ function card_share(list, by) {
 				recipients += '<option value="'+card.id+'">'+rec['35']+' '+rec['38']+'</option>';
 			});
 			recipients += '</option>'
-			aftertext = 'Choose the recipient and write a short message:'+recipients+aftertext; 
+			aftertext = lsval('js choose and write')+recipients+aftertext; 
 			break;
 		default: return false;
 	}
@@ -1154,10 +1160,10 @@ function card_share(list, by) {
   		afterText:aftertext,
   		buttons: [
   			{
-  				text:'Cancel'
+  				text:lsval('cancel')
   			},
   			{
-  				text:'Send',
+  				text:lsval('Send'),
   				onClick: function () {
   					var value = $$(myModal).find('input').val().trim();
   					switch(by) {
@@ -1175,7 +1181,7 @@ function card_share(list, by) {
 								console.log(pars)
   								socket.emit('card share email',pars);
   							} else {
-  								myApp.alert("The address is not valid. Send aborted");
+  								myApp.alert(lsval("js address aborted"));
   							}
   							break;
   						case 'texto':
@@ -1184,7 +1190,7 @@ function card_share(list, by) {
   							if (value.match(Tel)) {
   								socket.emit('card share sms', {"from":B.cards.mycard.id,"cardid":id,"cell":cell});
   							} else {
-  								myApp.alert("The number is not valid. Send aborted");
+  								myApp.alert(lsval("js number aborted"));
   							}
   							break;
   						case 'direct':
@@ -1192,7 +1198,7 @@ function card_share(list, by) {
   							if (dest) {
   								socket.emit('card share direct', {"from":B.cards.mycard.id,"cardid":id,"dest":dest,"mesg":value});
   							} else {
-  								myApp.alert("No recipient chosen. Send aborted");
+  								myApp.alert(lsval("js recipient aborted"));
   							}
   							break;
   					};
@@ -1218,7 +1224,7 @@ function card_sms_validate() {
 		clearTimeout(B.timout);
 		myApp.modal({
 			title: 'Cellphone validation', 
-			text: '<div id="validation_modal_text"><b><span id="sms_test_msg">Please enter de validation-code from the SMS</span></b> \
+			text: '<div id="validation_modal_text"><b><span id="sms_test_msg">'+lsval('js validation code')+'</span></b> \
 						<div class="row"> \
 						  <div class="col-50"> \
 						    <input type="number" id="sms_test_code" value="" placeholder="999999" style="padding:3px;"/> \
@@ -1233,7 +1239,7 @@ function card_sms_validate() {
 		});
 	
 	} else {
-		myApp.alert("This entry doesn't match a cellphone number.\nPlease correct and retry.");
+		myApp.alert(lsval("js doesnt match"));
 	}
 	
 }
@@ -1249,18 +1255,18 @@ function card_sms_test_code() {
 		var data = {"cell":cell,"email":B.cards.mycard.email,"code":sms_test_code};
 		socket.emit('send sms test code', data);
 	} else {
-		$$("#sms_test_msg").text("The code should have 6 digit.<br>Please correct and retry.");
+		$$("#sms_test_msg").text(lsval("js have 6"));
 	}
 }
 
 function card_reload() {
 	console.log('card_reload()');
 	if ($connected) {
-		myApp.alert('Synchronizing your data...<br>Please wait.');
+		myApp.alert(lsval('js sync data'));
 		socket.emit('card load2', B.cards.mycard.id);
 	}
 	else {
-		myApp.alert('Unable to reach the server.<br>Your device seem to be offline.');
+		myApp.alert(lsval('js server offline'));
 	}
 }
 
@@ -1353,7 +1359,7 @@ function croper_record() {
 		var fid = parseInt($$('#img_output').val()) || parseInt($$('#img_input').val());
 		
 		if (!fid) {
-			myApp.alert("You need to select an input or output image type before saving it!");
+			myApp.alert(lsval("js need to select"));
 			return false;
 		}
 		
@@ -1417,10 +1423,10 @@ function geoPermission() {
 		        case locationPermission.DENIED: 
 		        	clearTimeout(B.timout);
 		        	myApp.modal({
-				   	title: 'GeoLocation is not permitted on your device', 
-				   	text: 'You have to activate GeoLocation in your app parameters for Bizswiper card exchange to work.', 
+				   	title: lsval('js geo not activated'), 
+				   	text: lsval('js activate geo'), 
 				   	buttons: [
-							{ text: "Ok", onClick: function () {
+							{ text: lsval("Ok"), onClick: function () {
 								
 							} }
 						]
@@ -1433,10 +1439,10 @@ function geoPermission() {
 	    if (result.state !== 'granted') {
 	      clearTimeout(B.timout);
 	      myApp.modal({
-		   	title: 'GeoLocation is not permitted on your device', 
-		   	text: 'You have to activate GeoLocation in your app parameters for Bizswiper card exchange to work.', 
+		   	title: lsval('js geo not activated'), 
+		   	text: lsval('js activate geo'), 
 		   	buttons: [
-					{ text: "Ok", onClick: function () {} }
+					{ text: lsval("Ok"), onClick: function () {} }
 				]
 	  		});
 	    }
@@ -1449,10 +1455,10 @@ function geoLocation(func) {
 	if (!navigator.geolocation){
 		clearTimeout(B.timout);
 		myApp.modal({
-	   	title: 'GeoLocation is not permitted on your device', 
-	   	text: 'You have to activate GeoLocation in your app parameters for B.&iuml;.Z card exchange to work.1', 
+	   	title: lsval('js geo not activated'),
+	   	text: lsval('js activate geo'), 
 	   	buttons: [
-				{ text: "Ok", onClick: function () {} }
+				{ text: lsval("Ok"), onClick: function () {} }
 			]
   		});
 		return false;
@@ -1466,10 +1472,10 @@ function geoLocation(func) {
 		myApp.hidePreloader();
 		clearTimeout(B.timout);
 		myApp.modal({
-	   	title: 'GeoLocation is not permitted on your device', 
-	   	text: err.PositionError.code+' You have to activate GeoLocation in your app parameters for B.&iuml;.Z card exchange to work.', 
+	   	title: lsval('js geo not activated'),
+	   	text: lsval('js activate geo'), 
 	   	buttons: [
-				{ text: "Ok", onClick: function () {} }
+				{ text: lsval("Ok"), onClick: function () {} }
 			]
   		});
 	}
@@ -1486,7 +1492,7 @@ function geoLocation(func) {
 function saveData() {
 	
 	if (typeof LocalFileSystem === "undefined") {
-		myApp.alert("Unable to open your file system!");
+		myApp.alert(lsval("js no file system"));
 		return false;
 	}
 	
@@ -1501,7 +1507,7 @@ function saveData() {
 				 fileEntry.createWriter(function (fileWriter) {
 			 
 			        fileWriter.onerror = function (e) {
-			            console.log("Failed file write: " + e.toString());
+			            console.log(lsval("Failed file write: ") + e.toString());
 			        };
 			        
 			        fileWriter.write(JSON.stringify(B));
@@ -1516,7 +1522,7 @@ function saveData() {
 function readData(onSuccess) {
 	
 	if (typeof LocalFileSystem === "undefined") {
-		myApp.alert("Unable to open your file system!");
+		myApp.alert(lsval("js no file system"));
 		return false;
 	}
 	
@@ -1572,13 +1578,22 @@ $$(document).on('form:success', 'form.ajax-submit', function (e) {
 			
 			saveData();
 		}
-	})
+	});
+
+	B.list 	= "mycard";
+	B.index 	= false;
+	B.cardid = pars.id;
 	
-	card_populate("mycard",B.cards.mycard);
+	card_populate();
 	
 });
 
 $$(".index-open").on("click", function(){	
+
+	B.list 	= "mycard";
+	B.index 	= false;
+	
+	card_populate();
 	mainView.router.load({pageName: 'index',animatePages: false});
 });
 
@@ -1712,7 +1727,7 @@ $$('#img_input').on("change", function() {
 		}
 	}
 	if (!found) { 
-		myApp.alert("No image for that field yet"); 
+		myApp.alert(lsval("js no image")); 
 	}
 	else {
 		B.croper.destroy();
@@ -1767,3 +1782,25 @@ $$(".card_template").on("click", function() {
 	$$("#template_text").text($$(this).data("name"));
 	$$("#template").val($$(this).attr("id"));
 });
+
+$$("a.politics-service").on("click", function(){
+	console.log("service");
+	$$.get(B.server+'/policies/', {"only":"service"}, function(data){
+		$$('div[data-page="politics-service"] > div.page-content').html(data);
+	});
+});
+
+$$("a.politics-summary").on("click", function(){
+	console.log("summary");
+	$$.get(B.server+'/policies/', {"only":"summary"}, function(data){
+		$$('div[data-page="politics-summary"] > div.page-content').html(data);
+	});
+});
+
+$$("a.politics-privacy").on("click", function(){
+	console.log("privacy");
+	$$.get(B.server+'/policies/', {"only":"privacy"}, function(data){
+		$$('div[data-page="politics-privacy"] > div.page-content').html(data);
+	});
+});
+
