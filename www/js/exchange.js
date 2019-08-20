@@ -497,10 +497,7 @@ function onDeviceReady() {
 		$$("#email").focus();
 	}
 	
-	if (navigator.globalization) {
-		navigator.globalization.getPreferredLanguage(
-		    function (locale) {cLANGUAGE = locale.value;languageControls(cLANGUAGE);console.log(cLANGUAGE);},
-		    function () {cLANGUAGE = "en";languageControls(cLANGUAGE);console.log(cLANGUAGE);}
-		);
+	if (navigator.language) {
+		cLANGUAGE = navigator.language;languageControls(cLANGUAGE);console.log(cLANGUAGE);
 	}
 }
