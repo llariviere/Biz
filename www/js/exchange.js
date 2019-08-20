@@ -8,20 +8,19 @@ function card_offer(context,id) {
 	console.log('card_offer('+context+','+id+')');
 	
 	if (!$connected) {
-		myApp.alert("Unable to offer this card.<br>Your device seem to be offline.");
+		myApp.alert(lsval("device offline"));
 		return;
 	}
 	
 	$$("#"+context+" .thumb").show();
-	//$$('#'+context).css({ 'top': $$('#'+context).data('top') })
-	$$('#'+context).css({ 'top': B.t })
+	$$('#'+context).css({ 'top': parseInt(B.t)})
 	$$('#'+context).animate(
 	    { 'top': 10 },
 	    {
 	        duration: 500,
 	        easing: 'swing',
-	        begin: function (elements) {},
-	        complete: function () { card_offered(context,id); }
+	        begin: function () { console.log('Top avant : '+$$('#'+context).css('top')); },
+	        complete: function () { card_offered(context,id); console.log('Top avant : '+$$('#'+context).css('top')); }
 	    }
 	);
 }
@@ -42,8 +41,7 @@ function card_offered(context,id) {
 	});
 	
 	$$('#'+context+' .thumb').hide();
-	$$('#'+context).animate( 
-		{ 'top': B.t}, 
+	$$('#'+context).animate({ 'top': parseInt(B.t)}, 
 		{ complete: function(){ $$(".no-thumb").show() } }
 	);
 } 
@@ -86,21 +84,21 @@ socket.on('card login', function (data) {
 	switch(data.msg) {
 		case "card not found":
 			myApp.formDeleteData('login_form');
-			myApp.alert("It's the first time we see this email used from this device. <b>We sent a message to this address</b> to confirm ownership so please open it and follow the instructions to gain access.");
+			myApp.alert(lsval("js first time"));
 			//welcomescreen.open();
 			myApp.loginScreen();
 			$$("#email").focus();
 			break;
 		case "card not confirmed":
 			myApp.formDeleteData('login_form');
-			myApp.alert("This email is not confirmed on this device.<br>We sent a new message to confirm ownership so please open it to have access.");
+			myApp.alert(lsval("js not confirmed"));
 			//welcomescreen.open();
 			myApp.loginScreen();
 			$$("#email").focus();
 			break;
 		case "card login try count":
 			myApp.formDeleteData('login_form');
-			myApp.alert("This email is not confirmed on this device and you exceeded the number of try without confirming.");
+			myApp.alert(lsval("js exceeded try"));
 			//welcomescreen.open();
 			myApp.loginScreen();
 			$$("#email").html('');
@@ -109,7 +107,7 @@ socket.on('card login', function (data) {
 		case "card logged in":
 		   myApp.closeModal(".login-screen.modal-in");
 			socket.emit('card load2', data.id);
-		   myApp.alert('Synchronizing your data...<br>Please wait.');
+		   myApp.alert(lsval('js sync data'));
 		   geoPermission();
 			break;
 		case "card set uuid":
@@ -167,7 +165,7 @@ socket.on('card shared data', function(card) {
 	B.cards.waiting.push(card.cards);
 	$$(".badge.waiting-list-nbr").html(B.cards.waiting.length);
 	for(var i=0; i<card.cards_fields.length; i++) B.cards_fields.push(card.cards_fields[i]);
-	myApp.alert("A new card in your waiting list!<br>Shared by someone"+(card.mesg ? " who wrote this:<p>\"<b>"+card.mesg+"</b>\"" : '.'));
+	myApp.alert(lsval("js new in waiting 1")+(card.mesg ? lsval("js new in waiting 2")+":<p>\"<b>"+card.mesg+"</b>\"" : '.'));
 });
 				
 socket.on('card record', function (data) {
@@ -176,24 +174,24 @@ socket.on('card record', function (data) {
 
 	switch(data.msg) {
 		case "UPDATED":
-			myApp.alert("Card updated!");
+			myApp.alert(lsval("js Card updated!"));
 			break;
 		case "EMAIL_EXIST":
 			if (data.id==B.cards.mycard.id) {
-				myApp.alert("<b>This email address is exactly like your's!</b><br>Please change it and try again.");
+				myApp.alert(lsval("js email exist"));
 			} else if (data.accepted) {
-				myApp.alert("<b>This email address is already in your current cards!</b>");
+				myApp.alert(lsval("js already in current"));
 				mainView.router.load({pageName: 'index'});
 			} else if (data.added) {
 				clearTimeout(B.timout);
 				myApp.modal({
-					title: 'Existing card', 
-					text: '<b>This email address is already in your waiting cards!</b><br>Do you want to accept it?', 
+					title: lsval('js Existing card'), 
+					text: lsval('js waiting accept it'), 
 					buttons: [
-						{ text: "No thanks", onClick: function(){
+						{ text: lsval("js No thanks"), onClick: function(){
 							mainView.router.load({pageName: 'index'});
 						} },
-						{ text: "Yes, accept it", onClick: function(){
+						{ text: lsval("js accept it"), onClick: function(){
 							B.container = "#thecard";
 							$$(B.container).data("id", data.id);
 							card_auth(data.id, 'accept');
@@ -204,14 +202,14 @@ socket.on('card record', function (data) {
 			} else if (data.payed) {
 				clearTimeout(B.timout);
 				myApp.modal({
-					title: 'Existing card', 
-					text: '<b>This email address is already used by a paying user!</b><br>Do you want to add it?', 
+					title: lsval('js Existing card'), 
+					text: lsval('js add it'), 
 					buttons: [
-						{ text: "No thanks", onClick: function(){
-							myApp.alert("You should change the email address...");
+						{ text: lsval("js No thanks"), onClick: function(){
+							myApp.alert(lsval("js should change"));
 							$$(B.container+" input[type='email']").focus();
 						} },
-						{ text: "Yes, add it", onClick: function(){
+						{ text: lsval("js yes add"), onClick: function(){
 							data["cardid"] = B.cards.mycard.id;
 							socket.emit("card add",data);
 							mainView.router.load({pageName: 'index'});
@@ -247,12 +245,12 @@ socket.on('card add', function(data){
 	//pars["accepted"] = data.card.accepted;
 	//pars["id"] = data.card.id;
 	if (data.card.accepted==null) {
-		myApp.alert("Card added to your waiting list!")
+		myApp.alert(lsval("js added waiting"))
 		B.cards.waiting.push(data.card);
 		$$(".badge.waiting-list-nbr").html(B.cards.waiting.length);
 	} 
 	else {
-		myApp.alert("Card added to your current list!")
+		myApp.alert(lsval("js added current"))
 		B.cards.current.push(data.card);
 		$$(".badge.current-list-nbr").html(B.cards.current.length);
 	}
@@ -267,12 +265,12 @@ socket.on('card details', function(data){
 		B.cards_fields.push(data.cards_fields[i]);
 	}
 	if (data.card.accepted==null) {
-		myApp.alert("Card added to your waiting list!")
+		myApp.alert(lsval("js added waiting"))
 		B.cards.waiting.push(data.card);
 		$$(".badge.waiting-list-nbr").html(B.cards.waiting.length);
 	} 
 	else {
-		myApp.alert("Card added to your current list!")
+		myApp.alert(lsval("js added current"))
 		B.cards.current.push(data.card);
 		$$(".badge.current-list-nbr").html(B.cards.current.length);
 	}
@@ -292,7 +290,7 @@ socket.on('card accepted', function(data){
 		if (B.cards.current) $$(".badge.current-list-nbr").html(B.cards.current.length);
 		if (B.cards.waiting) $$(".badge.waiting-list-nbr").html(B.cards.waiting.length);
 		$$(".current-list-open").trigger("click");
-		myApp.alert("Card accepted and transfered to your current card list!");
+		myApp.alert(lsval("js tranfered to current"));
 	}
 	
 	saveData();
@@ -308,7 +306,7 @@ socket.on('card refused', function(data){
 		
 		if (B.cards.waiting) $$(".badge.waiting-list-nbr").html(B.cards.waiting.length);
 		$$(".waiting-list-open").trigger("click");
-		myApp.alert("Card deleted from your waiting card list!");
+		myApp.alert(lsval("js deleted from waiting"));
 		
 		saveData();
 	}
@@ -324,7 +322,7 @@ socket.on('card deleted', function(data){
 		}
 		$$(".current-list-open").trigger("click");
 		if (B.cards.current) $$(".badge.current-list-nbr").html(B.cards.current.length);
-		myApp.alert("Card deleted from your current card list!");
+		myApp.alert(lsval("js deleted from current"));
 		
 		saveData();
 	}
@@ -376,10 +374,10 @@ socket.on('card cc charge', function(data){
 socket.on('card offer confirm', function(data){
 	
    cancelModal = myApp.modal({
-   	title: 'Card offered...', 
-   	text: 'Clic below to cancel', 
+   	title: lsval('js Card offered'), 
+   	text: lsval('js Clic below to cancel'), 
    	buttons: [
-			{ text: "Cancel", onClick: function() { card_offer_cancel(data.id); } }
+			{ text: lsval("cancel"), onClick: function() { card_offer_cancel(data.id); } }
 		]
 	});
 	clearTimeout(B.timout);
@@ -399,7 +397,7 @@ socket.on('cards list', function(data){
 		var text = '<div class="list-block" id="cards_found"><table style="width:100%;">';
 		var fnds = [];
  			
-		var titre = (data.length > 1 ? "We found those offers<br>(clic a name to accept)" : "We found this offer<br>(clic to accept)");
+		var titre = (data.length > 1 ? lsval("js found list 1") : lsval("js found list 2"));
  			
 		$$.each(data, function(i,card){
 			
@@ -418,7 +416,7 @@ socket.on('cards list', function(data){
  		
  		clearTimeout(B.timout);
 		myApp.modal({title: titre, text: text, buttons: [
-			{ text: "Cancel", onClick: function(){}}
+			{ text: lsval("Cancel"), onClick: function(){}}
 		]});
 		
 		var timers = [];		
@@ -439,9 +437,7 @@ socket.on('cards list', function(data){
 	}
 
 });
-
-
-
+	
 function card_login(email) {
 	console.log('card_login('+email+')');
 	
@@ -450,9 +446,9 @@ function card_login(email) {
 	// validation des champs de login...
 	var regexp = /^[a-z0-9](\.?[a-z0-9_-]){0,}@[a-z0-9-]+\.([a-z]{1,6}\.)?[a-z]{2,6}$/gi;
 	if (!String(email).match(regexp)) {
-		myApp.alert("Your email address doesn't respect the standards. Please correct it and try again.")																																																																																																																																																																																																																																																																																																																																																				
+		myApp.alert("fs bad email")																																																																																																																																																																																																																																																																																																																																																				
 		myApp.loginScreen();
-		$$("#email").val('');
+		$$("#email").val(email);
 		$$("#email").focus();
 		return false;
 	}
@@ -472,16 +468,23 @@ function card_login(email) {
 
 }
 
-document.addEventListener("deviceready", onDeviceReady, false);
+if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/)) {
+     document.addEventListener("deviceready", onDeviceReady, false);
+} else {
+     onDeviceReady();
+}
+
 function onDeviceReady() {
+	console.log("deviceready");
 	var storedData = myApp.formGetData('login_form');
 	if (storedData.email) {
 		if ($connected) {
 			card_login(storedData.email);
 		} 
 		else {
+			console.log("Autologin local")
 			myApp.formStoreData('login_form', {
-				"email":email
+				"email":storedData.email
 		   });
 			readData(function(){
 				myApp.closeModal(".login-screen.modal-in");
@@ -492,5 +495,12 @@ function onDeviceReady() {
 		}
 	} else {
 		$$("#email").focus();
+	}
+	
+	if (navigator.globalization) {
+		navigator.globalization.getPreferredLanguage(
+		    function (locale) {cLANGUAGE = locale.value;languageControls(cLANGUAGE);console.log(cLANGUAGE);},
+		    function () {cLANGUAGE = "en";languageControls(cLANGUAGE);console.log(cLANGUAGE);}
+		);
 	}
 }
