@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.virtualbizcards.biz" version="1.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Biz</name>
+    <name>biz</name>
     <description>
        Biz virtual card app.
     </description>
@@ -21,7 +21,7 @@
     
     <preference name="SplashScreenDelay" value="4000" />
     <platform name="android">
-        <preference name="android-minSdkVersion" value="27" />
+        <preference name="android-minSdkVersion" value="28" />
         <preference name="AndroidPersistentFileLocation" value="Compatibility" />
         <allow-intent href="market:*" />
         <!-- Portrait -->
