@@ -5,7 +5,6 @@ var languageSpecificURL = "";
 var spanishLanguageSpecificURL = "i18n/es.json";
 var frenchLanguageSpecificURL  = "i18n/fr.json";
 var englishLanguageSpecificURL = "i18n/en.json";
-var lsval = {};
 
 var languageControls = function(language){
 
@@ -31,15 +30,15 @@ var languageControls = function(language){
       $$(".lsvlu").each(function(){
 			$$(this).attr("value",languageSpecificObject.languageSpecifications[0][$$(this).data("text")]);
 		});
-		
-		lsval = function(key){
-			value = languageSpecificObject.languageSpecifications[0][key];
-			return value;
-		};
 	});
 };
 
-var onNetworkCall = function(urlToHit,successCallback){
+function lsval(key){
+	value = languageSpecificObject.languageSpecifications[0][key];
+	return value;
+};
+
+function onNetworkCall(urlToHit,successCallback){
 	
 	$$.ajax({
 		 url: urlToHit,
