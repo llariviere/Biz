@@ -38,7 +38,7 @@
          "Record": "Record",
          "Refuse": "Refuse",
          "Accept": "Accept",
-         "capturePhoto": "Take photo of <b><span class="card-side">front</span></b>",
+         "capturePhoto": "Take photo of <b><span class=\"card-side\">front</span></b>",
          "listPhoto": "Choose from file",
          "savePhoto": "Save to file",
          "processPhoto": "Convert to card",
