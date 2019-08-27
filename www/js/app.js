@@ -148,8 +148,8 @@ function card_populate() {
 		B.cardid = B.cards.mycard.id;
 		
 		if (!B.t) {
-			B.h = $$("#mycard").width() / 3.5 * 2.0;
-			B.t = window.screen.height - B.h - 60;
+			B.h = window.screen.innerWidth / 3.5 * 2.0;
+			B.t = window.screen.innerHeight - B.h - 60;
 		}
 		
 	}
