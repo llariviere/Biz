@@ -59,6 +59,7 @@
     </platform>
     <preference name="DisallowOverscroll" value="true" />
     <preference name="Orientation" value="portrait" />
+    <preference name="SplashScreenDelay" value="10000" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
     <plugin name="cordova-plugin-geolocation" source="npm" spec="~2.4.3" />
     <plugin name="cordova-plugin-geolocation-permission-status" source="npm" spec="~1.0.0" />
