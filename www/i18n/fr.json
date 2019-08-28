@@ -87,12 +87,12 @@ var frenchLanguageSpecificObject = {
          "Waiting list": "Liste en attente",
          
          "js template": "From template.js >>>",
-         "Email": "Email",
-         "Firstname": "Firstname",
-         "Lastname": "Lastname",
-         "Cellphone": "Cellphone",
-         "Company": "Company",
-         "Job title": "Job title",
+         "Email": "Courriel",
+         "Firstname": "Prénom",
+         "Lastname": "Nom",
+         "Cellphone": "Cellulaire",
+         "Company": "Compagnie",
+         "Job title": "Titre",
          
          "js exchange": "From exchange.js >>>",
          "js device offline": "Partage de carte impossible.<br>Votre appareil semble être hors-ligne.",
