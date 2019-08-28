@@ -9,8 +9,8 @@
 	$$(".button.card-side").on("click", function(){
 		$$(".button.card-side").removeClass("selected");
 		$$(this).addClass("selected");
-		B.card_side = ($$(this).hasClass("front") ? lsval('js front') : lsval('js back'));
-		$$("span.card-side").text(B.card_side);
+		B.card_side = ($$(this).hasClass("front") ? "front" : "back");
+		$$("span.card-side").text(lsval(B.card_side));
 		$$("#card-photo > img").addClass("hidden");
 		$$("#card-photo > img."+B.card_side).removeClass("hidden");
 	});
