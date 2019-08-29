@@ -1118,7 +1118,7 @@ function card_points_img(card) {
 
 function card_about() {
 	console.log('card_about()');
-	myApp.alert(B.about);
+	myApp.alert(lsval('js about')+B.version);
 }
 
 function card_share(list, by) {
