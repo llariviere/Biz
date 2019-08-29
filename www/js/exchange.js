@@ -416,7 +416,7 @@ socket.on('cards list', function(data){
  		
  		clearTimeout(B.timout);
 		myApp.modal({title: titre, text: text, buttons: [
-			{ text: lsval("Cancel"), onClick: function(){}}
+			{ text: lsval("cancel"), onClick: function(){}}
 		]});
 		
 		var timers = [];		
