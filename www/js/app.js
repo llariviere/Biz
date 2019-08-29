@@ -1,9 +1,10 @@
 /* B.ï.Z specific /var/www/html/card/js/app.js */
 
 var B = {
-	version: '1.0.2 (2019-08)',
-	about:lsval('js about')+'1.0.2 (2019-08)',
-	server:'https://virtualbizcards.com:3333/',
+	version: '1.0.5 (2019-08)',
+	about:lsval('js about')+'1.0.5 (2019-08)',
+	server:'https://virtualbizcards.com/',
+	server_node:'https://virtualbizcards.com:3333/',
 	options: {
 		ocr_match: true,
 		shake_level: 40
@@ -74,7 +75,7 @@ var mainView = myApp.addView('.view-main', {
 
 var mySearchbar = {};
 
-var socket = io.connect(B.server);
+var socket = io.connect(B.server_node);
 var $connected = false;
 var $online = false;
 
