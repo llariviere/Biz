@@ -59,7 +59,7 @@ var frenchLanguageSpecificObject = {
          "Send": "Envoyer",
          "New message": "Nouveau message",
          "To :": "À :",
-         "Subject :": "Suject :",
+         "Subject :": "Sujet :",
          "Need help": "Besoin d'aide",
          "Billing:": "Facturation:",
          "Please help": "Aidez-nous à construire une base de données FAQ.",
